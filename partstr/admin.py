@@ -8,7 +8,6 @@ class PartAdmin(admin.ModelAdmin):
     list_display = ['partnumber','designation','status','level','parent', 'resp', 'created', 'updated']
     search_fields = ['partnumber', 'status']
 
-# visible tables from admin site
 admin.site.register(Level)
 admin.site.register(Status)
 admin.site.register(PnType)
