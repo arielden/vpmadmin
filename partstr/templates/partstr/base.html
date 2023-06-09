@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/partstr.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../static/images/fadea-logo.jpg" alt="Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Estructura</a></li>
+                <li><a href="#">Estado</a></li>
+                <li><a href="#">Calculador CG</a></li>
+                <li><a href="#">{% block login %}{% endblock %}</a></li>
+                
+            </ul>
+        </nav>
+        <a href="#" class="btn"><button>Contacto</button></a>
+    </header> 
+    <div id="content" class="content">
+        {% block content %}
+        {% endblock %}
+    </div> 
+</body>
+</html> 
