@@ -6,28 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/partstr.css' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../static/images/fadea-logo.jpg" alt="Logo">
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <i class="bx bx-network-chart"></i>
+                <span>VPM-Admin</span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
         </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#">Estructura</a></li>
-                <li><a href="#">Estado</a></li>
-                <li><a href="#">Calculador CG</a></li>
-                <li><a href="#">{% block login %}{% endblock %}</a></li>
-                
-            </ul>
-        </nav>
-        <a href="#" class="btn"><button>Contacto</button></a>
-    </header> 
-    <div id="content" class="content">
-        {% block content %}
-        {% endblock %}
-    </div> 
+        <div class="user">
+            <img src="../static/images/foto_mini.png" alt="me" class="user-img">
+            <div>
+                <p class="bold">Ariel D.</p>
+                <p>Admin</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-shopping-bag"></i>
+                    <span class="nav-item">Products</span>
+                </a>
+                <span class="tooltip">Products</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-body"></i>
+                    <span class="nav-item">Customers</span>
+                </a>
+                <span class="tooltip">Customers</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-cog"></i>
+                    <span class="nav-item">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-log-out"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
 </body>
-</html> 
+<script>
+    let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+
+    btn.onclick = function(){
+        sidebar.classList.toggle('active');
+    }
+</script>
+</html>
