@@ -4,6 +4,7 @@ from . import views
 app_name = 'partstr'
 
 urlpatterns = [
-    #cg_calc views
-    path('', views.partnumber_list, name='partnumbers_list'),
+    #partstr views
+    path('', views.home, name='home'),
+    path('pn_list/<str:id>/', views.pn_list, name='pn_list'),
 ]

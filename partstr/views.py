@@ -5,9 +5,13 @@ from django.shortcuts import render
 
 from .models import Part
 
-def partnumber_list(request):
+def pn_list(request, id):
     partnumbers = Part.objects.all()
 
     return render(request,
                   'partstr/pn_list.html',
                   {'partnumbers':partnumbers})
+
+def home(request):
+    return render(request,
+                  'partstr/home.html', {})

@@ -1,14 +1,18 @@
-{% extends 'partstr/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Lista de partes{% endblock %}
 
 {% block content %}
-<h1>Listado</h1>
-    <div>
+<div>
+    <div class="main-content">
+        <h2>Listado</h2>
         {% for part in partnumbers %}
-            <h2>
-                {{part.partnumber}}_{{part.designation}}
-            </h2>
+        <div>
+            <p>
+                <a href="/partstr/{{part.id}}">{{part.partnumber}}</a>_{{part.designation}}
+            </p>
+        </div>
         {% endfor %}
     </div>
+</div>
 {% endblock %}
