@@ -46,16 +46,16 @@ class Part(models.Model):
     partnumber = PartNumber(max_length=20, unique=True)
     designation = Designation(max_length= 200)
     pntype = models.ForeignKey(PnType,
-                                on_delete= models.CASCADE,
+                                on_delete= models.SET_NULL,
                                 null=True,
                                 blank=True)
     resp = models.ForeignKey(User,
-                             on_delete= models.CASCADE,
+                             on_delete= models.SET_NULL,
                              null=True,
                              blank=True)
     # Design status
     status = models.ForeignKey(Status,
-                               on_delete= models.CASCADE,
+                               on_delete= models.SET_NULL,
                                null=True,
                                blank=True)
     
@@ -76,7 +76,10 @@ class Part(models.Model):
                                blank=True,
                                related_name='children')
     level = models.ForeignKey(Level,
-                              on_delete = models.CASCADE)
+                              on_delete = models.SET_NULL,
+                              null=True,
+                              blank=True,
+                              default=1)
     
     objects = models.Manager() # Default
     released = ReleasedManager() # Custom manager for released parts!

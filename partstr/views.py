@@ -5,8 +5,9 @@ from django.shortcuts import render
 
 from .models import Part
 
-def pn_list(request, id):
-    partnumbers = Part.objects.all()
+def pn_list(request, user_id):
+    # partnumbers = Part.objects.all()
+    partnumbers = Part.objects.filter(resp=user_id)
 
     return render(request,
                   'partstr/pn_list.html',

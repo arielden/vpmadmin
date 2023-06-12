@@ -2,6 +2,14 @@
 python manage.py shell
 
 ```bash
+queryset = ModelName.objects.all()
+queryset = ModelName.objects.get()
+queryset = ModelName.objects.filter()
+queryset = ModelName.objects.expclude()
+```
+
+
+```bash
 >>>  from polls.models import Question, Choice
 >>>  from django.utils import timezone
 >>>  Question.objects.all()
