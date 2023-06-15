@@ -6,8 +6,13 @@
     <p>Acá se admnistra la estructura de ingeniería</p>
     
     <div class="main-content">
-        <a href="{% url 'partstr:partcreate' %}">Crear una parte</a>
-    </div>
-        
+        <div>
+            <a href="{% url 'partstr:partcreate' %}">Crear una parte</a>
+        </div>
+        <hr>
+        <div>
+            <a href="{% url 'partstr:partlist' 1 %}">Lista de partes</a>
+        </div>
+    </div>  
 </div>
 {% endblock %}

@@ -13,10 +13,12 @@
         <div>
             <p>
                 <a href="{% url 'partstr:partupdate' part.id%}">{{part.partnumber}}</a>_{{part.designation}}
+                <a href="{% url 'partstr:partdelete' part.id%}">Delete!</a>
             </p>
         </div>
         <hr>
         {% endfor %}
+        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
     </div>
 </div>
 {% endblock %}

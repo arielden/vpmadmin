@@ -48,7 +48,8 @@ class Part(models.Model):
     pntype = models.ForeignKey(PnType,
                                 on_delete= models.SET_NULL,
                                 null=True,
-                                blank=True)
+                                blank=True,
+                                related_name='part') #con el 'relate_name" la relación queda User.part
     resp = models.ForeignKey(User,
                              on_delete= models.SET_NULL,
                              null=True,

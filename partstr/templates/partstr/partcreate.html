@@ -2,13 +2,24 @@
 
 {% block content %}
 
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <!-- "as_p" method adds the p tag to every field in the form. -->
-        <input type="submit" value="Submit">
-    </form>
+<div class="main-content">
+    <h3>Crear / Modificar Parte</h3>
+    <hr>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <!-- "as_p" method adds the p tag to every field in the form. -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div>
+        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+    </div>
+    <hr>
+    <div>
+        <a href="{% url 'partstr:home' %}">Home</a>
+    </div>
 </div>
 
 {% endblock content %}

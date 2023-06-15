@@ -37,3 +37,10 @@ def partupdate(request, pk):
 
     context = {'form': form}
     return render(request, 'partstr/partcreate.html', context)
+
+def partdelete(request, pk):
+    part = Part.objects.get(id=pk)
+    if request.method == 'POST':
+        part.delete()
+        return redirect('home')
+    return render(request, 'partstr/delete.html', {'obj':part})
