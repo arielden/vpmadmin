@@ -1,0 +1,42 @@
+.sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+  
+  .nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    background-color: #ccc;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: #fff;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  
+  .nav-link:hover::before {
+    transform: scaleX(1);
+  }

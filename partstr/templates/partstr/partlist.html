@@ -8,10 +8,14 @@
         <h2>Listado</h2>
         {% for part in partnumbers %}
         <div>
+
+        </div>
+        <div>
             <p>
-                <a href="/partstr/{{part.id}}">{{part.partnumber}}</a>_{{part.designation}}
+                <a href="{% url 'partstr:partupdate' part.id%}">{{part.partnumber}}</a>_{{part.designation}}
             </p>
         </div>
+        <hr>
         {% endfor %}
     </div>
 </div>

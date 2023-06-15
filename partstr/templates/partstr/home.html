@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Estructura VPM</h1>
-<p>Acá se admnistra la estructura de ingeniería</p>
+<div>
+    <h1>Estructura VPM</h1>
+    <p>Acá se admnistra la estructura de ingeniería</p>
+    
+    <div class="main-content">
+        <a href="{% url 'partstr:partcreate' %}">Crear una parte</a>
+    </div>
+        
+</div>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <!-- "as_p" method adds the p tag to every field in the form. -->
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock content %}

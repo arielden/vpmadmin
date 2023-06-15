@@ -78,8 +78,7 @@ class Part(models.Model):
     level = models.ForeignKey(Level,
                               on_delete = models.SET_NULL,
                               null=True,
-                              blank=True,
-                              default=1)
+                              blank=True,)
     
     objects = models.Manager() # Default
     released = ReleasedManager() # Custom manager for released parts!
