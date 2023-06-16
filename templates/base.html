@@ -48,6 +48,13 @@
                 <span class="tooltip">Buscar</span>
             </li>
             <li>
+                <a href="{% url 'partstr:login' %}">
+                    <i class="bx bx-log-in"></i>
+                    <span class="nav-item">Login</span>
+                </a>
+                <span class="tooltip">Login</span>
+            </li>
+            <li>
                 <a href="#">
                     <i class="bx bx-log-out"></i>
                     <span class="nav-item">Logout</span>
@@ -58,6 +65,16 @@
     </div>
 
     <div class="main-content">
+        <div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <hr>
         <div class="container">
             {% block content %}
             {% endblock %}
