@@ -6,6 +6,7 @@ app_name = 'partstr'
 urlpatterns = [
     #partstr views
     path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
 
     path('', views.home, name='home'), # 'partstr/' home.
     path('partlist/<int:user_id>/', views.partlist, name='partlist'),

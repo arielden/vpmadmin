@@ -5,14 +5,22 @@
     <h1>Estructura VPM</h1>
     <p>Acá se admnistra la estructura de ingeniería</p>
     
+
     <div class="main-content">
-        <div>
-            <a href="{% url 'partstr:partcreate' %}">Crear una parte</a>
-        </div>
-        <hr>
-        <div>
-            <a href="{% url 'partstr:partlist' 1 %}">Lista de partes</a>
-        </div>
+        {% if request.user.is_authenticated %}
+            <div>
+                <a href="{% url 'partstr:partcreate' %}">Crear una parte</a>
+            </div>
+            <hr>
+            <div>
+                <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
+                <!-- 'request.user.id' obtiene el id del usuario logueado y lo pasa como argumento -->
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'partstr:login' %}">Login</a>
+            </div>
+        {% endif %}
     </div>  
 </div>
 {% endblock %}

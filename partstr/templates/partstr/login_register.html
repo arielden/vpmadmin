@@ -2,18 +2,24 @@
 
 {% block content %}
 
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
+<div class="main-content">
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+    
+            <label for="">Username:</label>
+            <input type="text" name="username" placeholder="Enter Username">
+    
+            <label for="">Password:</label>
+            <input type="text" name="password" placeholder="Enter password">
+    
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <div class="container">
+        <a href="{% url 'partstr:home' %}">Home</a>
+    </div>
 
-        <label for="">Username:</label>
-        <input type="text" name="username" placeholder="Enter Username">
-
-        <label for="">Password:</label>
-        <input type="text" name="password" placeholder="Enter password">
-
-        <input type="submit" value="Login">
-    </form>
 </div>
 
 {% endblock %}
