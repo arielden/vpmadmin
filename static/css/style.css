@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
 }
 
 .user-img{
@@ -134,12 +135,14 @@
     left: 125px;
     top: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 0.8rem rgba(61, 233, 186, 0.2);
     border-radius:  0.6rem;
     padding: 0.4rem 1.2rem;
     line-height: 1.8rem;
     z-index: 20;
     opacity: 0;
+    background-color: #2a2b32;
+    color: #fff;
 }
 
 .sidebar ul li:hover .tooltip {
