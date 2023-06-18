@@ -45,23 +45,21 @@ def logoutUser(request):
 def partlist(request, user_id):
     # partnumbers = Part.objects.all()
 
-    """
-    Le voy a agregar un condicional para filtrar las partes del usuario,
-    o si se ingresa -1, muestra todas las partes creadas.
-    """
-
-    if user_id != -1:
+    if user_id == request.user.id:
         partnumbers = Part.objects.filter(resp=user_id)
-        user = -1
-    else:
+        user = User.objects.get(id=user_id)
+    elif user_id == 0:
         partnumbers = Part.objects.all()
-        user = User.objects(id=user_id)
+        user = user_id
+    else:
+        partnumbers = None
+        user = None
 
     context = {'partnumbers':partnumbers, 'user':user}
 
     return render(request,
                   'partstr/partlist.html',
-                  {'partnumbers':partnumbers})
+                  context)
 
 def home(request):
     return render(request,

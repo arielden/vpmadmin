@@ -5,12 +5,15 @@
 {% block content %}
 <div>
     <div class="main-content">
-        {% if user != -1 %}
-            <h2>Partes de {{ user.username }}</h2><br>
+        {% if user == 0 %}
+            <h2>Listado completo.</h2><br>
+            <a href="{% url 'partstr:partlist' request.user.id %}">Lista personal</a><br>
         {% else %}
-            <h2>Listado completo.</h2>
+            <h2>Partes de {{ user.username }}</h2><br>
+            <a href="{% url 'partstr:partlist' 0 %}">Lista completa</a><br>
         {% endif %}
 
+        <br>
         {% for part in partnumbers %}
         <div>
 
@@ -23,6 +26,7 @@
         </div>
         <hr>
         {% endfor %}
+        <br>
         <a href="{% url 'partstr:home' %}">Home</a>
     </div>
 </div>
