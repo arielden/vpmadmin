@@ -5,7 +5,12 @@
 {% block content %}
 <div>
     <div class="main-content">
-        <h2>Listado</h2>
+        {% if user != -1 %}
+            <h2>Partes de {{ user.username }}</h2><br>
+        {% else %}
+            <h2>Listado completo.</h2>
+        {% endif %}
+
         {% for part in partnumbers %}
         <div>
 
@@ -18,7 +23,7 @@
         </div>
         <hr>
         {% endfor %}
-        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+        <a href="{% url 'partstr:home' %}">Home</a>
     </div>
 </div>
 {% endblock %}

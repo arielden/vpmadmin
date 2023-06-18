@@ -168,3 +168,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+input {
+    color:#202123
+}

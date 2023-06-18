@@ -14,7 +14,7 @@
         </form>
     </div>
     <div>
-        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+        <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
     </div>
     <hr>
     <div>

@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 
 def loginPage(request):
 
+    # Si el usuario está logueado, redirecciona al home
+    if request.user.is_authenticated: 
+        return redirect('partstr:home')
+
     # Recibe username y password del formulario
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -40,7 +44,20 @@ def logoutUser(request):
 @login_required(login_url='partstr:login') #el decorator restringe el acceso si no encuentra usuario autenticado
 def partlist(request, user_id):
     # partnumbers = Part.objects.all()
-    partnumbers = Part.objects.filter(resp=user_id)
+
+    """
+    Le voy a agregar un condicional para filtrar las partes del usuario,
+    o si se ingresa -1, muestra todas las partes creadas.
+    """
+
+    if user_id != -1:
+        partnumbers = Part.objects.filter(resp=user_id)
+        user = -1
+    else:
+        partnumbers = Part.objects.all()
+        user = User.objects(id=user_id)
+
+    context = {'partnumbers':partnumbers, 'user':user}
 
     return render(request,
                   'partstr/partlist.html',

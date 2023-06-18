@@ -48,8 +48,7 @@ class Part(models.Model):
     pntype = models.ForeignKey(PnType,
                                 on_delete= models.SET_NULL,
                                 null=True,
-                                blank=True,
-                                related_name='part') #con el 'relate_name" la relación queda User.part
+                                blank=True)
     resp = models.ForeignKey(User,
                              on_delete= models.SET_NULL,
                              null=True,
@@ -71,6 +70,8 @@ class Part(models.Model):
     zcg = models.DecimalField(max_digits=8, decimal_places=1, default=0) # Zcg in (mm)
     
     # Hierarchy
+    # al definir related_name='children', podemos acceder a todos los hijos de una instancia a través del
+    # método .children.all()
     parent = models.ForeignKey('self',
                                on_delete = models.SET_NULL,
                                null=True,
