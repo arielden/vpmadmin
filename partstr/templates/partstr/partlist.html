@@ -3,31 +3,32 @@
 {% block title %}Lista de partes{% endblock %}
 
 {% block content %}
-<div>
-    <div class="main-content">
-        {% if user == 0 %}
-            <h2>Listado completo.</h2><br>
-            <a href="{% url 'partstr:partlist' request.user.id %}">Lista personal</a><br>
-        {% else %}
-            <h2>Partes de {{ user.username }}</h2><br>
-            <a href="{% url 'partstr:partlist' 0 %}">Lista completa</a><br>
-        {% endif %}
+<div class="main-content">
+    {% if user == 0 %}
+        <h2>Listado completo.</h2><br>
+        <h5>
+            <a href="{% url 'partstr:partlist' request.user.id %}">Mi lista</a><br>
+        </h5>
+    {% else %}
+        <h2>Partes de {{ user.username }}</h2><br>
+        <h5>
+            <a href="{% url 'partstr:partlist' 0 %}">Ver todas</a><br>
+        </h5>
+    {% endif %}
+    <br>
 
-        <br>
-        {% for part in partnumbers %}
-        <div>
+    <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
-        </div>
-        <div>
-            <p>
+    {% for part in partnumbers %}
+        <div class="part-container">
                 <a href="{% url 'partstr:partupdate' part.id%}">{{part.partnumber}}</a>_{{part.designation}}
-                <a href="{% url 'partstr:partdelete' part.id%}">Delete!</a>
-            </p>
+                <!-- Si el usuario logueado es el resp de las piezas, muestra la opción Delete -->
+                {% if part.resp == request.user %}
+                    <a href="{% url 'partstr:partdelete' part.id%}">Eliminar</a>
+                {% endif %}
         </div>
-        <hr>
-        {% endfor %}
-        <br>
-        <a href="{% url 'partstr:home' %}">Home</a>
-    </div>
+    {% endfor %}
+    <br>
+    <a href="{% url 'partstr:home' %}">Home</a>
 </div>
 {% endblock %}

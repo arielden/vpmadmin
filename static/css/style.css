@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height:100vh;
     width: 80px;
     /* width: 205px; */
     background-color: #202123;
@@ -171,4 +171,9 @@
 
 input {
     color:#202123
+}
+
+.main-content .part-container {
+    color: #a3a3ef;
+    height: 30px;
 }

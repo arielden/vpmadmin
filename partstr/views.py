@@ -55,7 +55,12 @@ def partlist(request, user_id):
         partnumbers = None
         user = None
 
-    context = {'partnumbers':partnumbers, 'user':user}
+    partnumbers_count = partnumbers.count()
+
+    context = {'partnumbers':partnumbers,
+               'user':user,
+               'partnumbers_count':partnumbers_count,
+               }
 
     return render(request,
                   'partstr/partlist.html',
@@ -67,7 +72,8 @@ def home(request):
 
 @login_required(login_url='partstr:login')
 def partcreate(request):
-    form = PartCreateForm()
+    # le agrego 'initial=' para completar con valores por defecto.
+    form = PartCreateForm(initial={'resp':request.user.id})
     if request.method == 'POST':
         form = PartCreateForm(request.POST)
         if form.is_valid():

@@ -50,9 +50,9 @@ class Part(models.Model):
                                 null=True,
                                 blank=True)
     resp = models.ForeignKey(User,
-                             on_delete= models.SET_NULL,
-                             null=True,
-                             blank=True)
+                             on_delete= models.DO_NOTHING,
+                             null=False,
+                             default=1)
     # Design status
     status = models.ForeignKey(Status,
                                on_delete= models.SET_NULL,
