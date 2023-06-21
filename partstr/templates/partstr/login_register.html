@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
+{% block title %}Estructura VPM - Login{% endblock %}
+
 {% block content %}
 
-<div class="main-content">
-    <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-    
-            <label for="">Username:</label>
-            <input type="text" name="username" placeholder="Enter Username">
-    
-            <label for="">Password:</label>
-            <input type="text" name="password" placeholder="Enter password">
-    
-            <input type="submit" value="Login">
-        </form>
-    </div>
-    <div class="container">
+<div class="central">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="form-label">Nombre de usuario:</label>
+            <input class="form-control type="text" class="form-control" name="username" placeholder="Ingrese su usuario">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña">
+        </div>   
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div><br><hr>
         <a href="{% url 'partstr:home' %}">Home</a>
     </div>
-
 </div>
 
 {% endblock %}

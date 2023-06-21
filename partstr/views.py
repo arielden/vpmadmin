@@ -72,12 +72,13 @@ def home(request):
 
 @login_required(login_url='partstr:login')
 def partcreate(request):
-    # le agrego 'initial=' para completar con valores por defecto.
-    form = PartCreateForm(initial={'resp':request.user.id})
+    form = PartCreateForm()
     if request.method == 'POST':
         form = PartCreateForm(request.POST)
         if form.is_valid():
-            form.save()
+            part = form.save(commit=False)
+            part.resp = request.user
+            part.save()
             return redirect('home')
 
     context = {'form':form}

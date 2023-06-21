@@ -1,76 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div class="sidebar">
-        <div class="top">
-            <div class="logo">
-                <i class="bx bx-network-chart"></i>
-                <span>VPM-Admin</span>
-            </div>
-            <i class="bx bx-menu" id="btn"></i>
-        </div>
-        <div class="user">
-            <img src="{% static 'images/foto_mini.png' %}" alt="me" class="user-img">
-            <div>
-                <p class="bold">Ariel D.</p>
-                <p>Admin</p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a href="#">
-                    <i class="bx bx-cabinet"></i>
-                    <span class="nav-item">Panel</span>
-                </a>
-                <span class="tooltip">Panel</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-vector"></i>
-                    <span class="nav-item">Estructura</span>
-                </a>
-                <span class="tooltip">Estructura</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bx-file-find"></i>
-                    <span class="nav-item">Buscar</span>
-                </a>
-                <span class="tooltip">Buscar</span>
-            </li>
-            <li class="login-button">
-                <a href="{% url 'partstr:login' %}">
-                    <i class="bx bx-log-in"></i>
-                    <span class="nav-item">Login</span>
-                </a>
-                <span class="tooltip">Login</span>
-            </li>
-            <li class="logout-button">
-                <a href="{% url 'partstr:logout' %}">
-                    <i class="bx bx-log-out"></i>
-                    <span class="nav-item">Logout</span>
-                </a>
-                <span class="tooltip">Logout</span>
-            </li>
-        </ul>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <title>{% block title %}{% endblock %}</title>
+
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+<body>
+    {% include 'sidebar.html' %}
+    
     <div class="main-content">
         <div>
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
+                <li>{{ message }}</li>
+                {% endfor %}
             </ul>
             {% endif %}
         </div>
@@ -80,14 +31,14 @@
             {% endblock %}
         </div>
     </div>
-
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 <script>
     let btn = document.querySelector('#btn')
     let sidebar = document.querySelector('.sidebar')
-
+    
     btn.onclick = function(){
         sidebar.classList.toggle('active');
     }
-</script>
+    </script>
 </html>
