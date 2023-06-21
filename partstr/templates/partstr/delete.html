@@ -2,12 +2,15 @@
 
 {% block content %}
 
-<div>
+<div class="central">
     <form action="" method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ obj }}"?</p>
-        <input type="submit" value="Confirm">
-        <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
+        <input class="btn btn-primary" type="submit" value="Confirmar">
+        <br><hr>
+        <div>
+            <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
+        </div>
         <!-- "META.HTTP_REFERER" lleva al usuario a la página desde donde vino. -->
     </form>
 </div>

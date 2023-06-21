@@ -19,15 +19,32 @@
 
     <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
-    {% for part in partnumbers %}
-        <div class="part-container">
-                <a href="{% url 'partstr:partupdate' part.id%}">{{part.partnumber}}</a>_{{part.designation}}
-                <!-- Si el usuario logueado es el resp de las piezas, muestra la opción Delete -->
-                {% if part.resp == request.user %}
-                    <a href="{% url 'partstr:partdelete' part.id%}">Eliminar</a>
-                {% endif %}
-        </div>
-    {% endfor %}
+    <div class="card" style="width: 600px;">
+        <ul class="list-group list-group-flush" >
+            {% for part in partnumbers %}
+                    <li class="list-group-item">
+                        <a href="{% url 'partstr:partupdate' part.id %}">{{ part.partnumber }}</a>_{{ part.designation }}
+                        {% if part.resp == request.user %}
+                            <!-- Delete button here! -->
+                            <a class="btn btn-outline-danger btn-sm" href="{% url 'partstr:partdelete' part.id %}" role="button">Eliminar</a>
+                        {% endif %}
+                    </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+
     <br>
     <a href="{% url 'partstr:home' %}">Home</a>
 </div>

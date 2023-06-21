@@ -174,13 +174,13 @@ input {
     color:#202123
 }
 
-.main-content .part-container {
-    color: #a3a3ef;
-    height: 30px;
-}
-
 .main-content .central {
     width:80%;
     max-width: 600px;
     margin-left: 150px;
 }
+
+/* Overriding bootstrap parameters */
+.list-group {
+    --bs-list-group-bg: #2a2b32;
+    --bs-list-group-color: #dfdfe4;}
