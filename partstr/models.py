@@ -23,22 +23,22 @@ class Designation(models.CharField):
 #---------------------------------------------------
 
 class Level(models.Model):
-    level = models.IntegerField(unique=True)
+    name = models.IntegerField(unique=True)
 
     def __str__(self) -> Any:
-        return str(self.level)
+        return str(self.name)
 
 class Status(models.Model):
-    status = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self) -> str:
-        return self.status
+        return self.name
 
 class PnType(models.Model):
-    pntype = models.CharField(max_length=50, unique=True, null=True)
+    name = models.CharField(max_length=50, unique=True, null=True)
 
     def __str__(self) -> str:
-        return self.pntype
+        return self.name
 
 class Part(models.Model):
 

@@ -11,4 +11,4 @@ class PartCreateForm(ModelForm):
                   'status',
                   'parent',
                   'mass', 
-                  'xcg', 'ycg', 'zcg'] #Elimino 'resp', lo cargo automáticamente en la vista.
+                  'xcg', 'ycg', 'zcg'] #Eliminar 'resp', si se carga automáticamente en la vista.

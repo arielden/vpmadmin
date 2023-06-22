@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<div class="central">
+<!-- <div class="central">
     <h3>Crear / Modificar Parte</h3>
     <hr>
     <div>
         <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
-            <!-- "as_p" method adds the p tag to every field in the form. -->
             <input type="submit" value="Submit">
         </form>
     </div>
@@ -20,6 +19,89 @@
     <div>
         <a href="{% url 'partstr:home' %}">Home</a>
     </div>
-</div>
+</div> -->
 
+<div class="central">
+    <h3>Crear / Modificar Parte</h3>
+    <hr>
+    <form method="POST" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-4">
+          <label for="id_level" class="form-label">Nivel:</label>
+            <select class="form-select" name="level" id="id_level">
+                <option selected>Seleccionar...</option>
+                {% for level in levels %}
+                    <option value="{{ level.id }}">{{ level.name }} </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+          <label for="id_pntype" class="form-label">Tipo:</label>
+          <select class="form-select" name="pntype" id="id_pntype">
+            <option selected>Seleccionar...</option>
+            {% for type in pntypes %}
+                <option value="{{ type.id }}">{{ type.name }} </option>
+            {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="id_status" class="form-label">Madurez:</label>
+            <select class="form-select" name="status" id="id_status">
+              <option selected>Seleccionar...</option>
+              {% for partstatus in status %}
+                  <option value="{{ partstatus.id }}">{{ partstatus.name }} </option>
+              {% endfor %}
+              </select>
+        </div>
+        <div class="col-md-6">
+            <label for="id_partnumber" class="form-label">Número de parte:</label>
+            <input type="text" class="form-control" name="partnumber" required id="id_partnumber">
+        </div>
+        <div class="col-md-6">
+            <label for="id_designation" class="form-label">Designación:</label>
+            <input type="text" class="form-control" name="designation" required id="id_designation">
+        </div>
+        <div class="col-md-12">
+            <label for="id_parent" class="form-label">CSI:</label>
+            <select class="form-select" name="parent" id="id_parent">
+                <option selected>Seleccione CSI</option>
+                {% for assy in assemblies %}
+                    <option value="{{ assy.id }}">{{ assy.partnumber }} </option>
+                {% endfor %}
+                </select>
+        </div>
+        <div class="col-md-3">
+            <label for="id_mass" class="form-label">Masa:</label>
+            <input type="number" class="form-control" name="mass" id="id_mass">
+        </div>
+        <div class="col-md-3">
+            <label for="id_xcg" class="form-label">Xcg:</label>
+            <input type="number" class="form-control" name="xcg" id="id_xcg">
+        </div>
+        <div class="col-md-3">
+            <label for="id_ycg" class="form-label">Ycg:</label>
+            <input type="number" class="form-control" name="ycg" id="id_ycg">
+        </div>
+        <div class="col-md-3">
+            <label for="id_zcg" class="form-label">Zcg:</label>
+            <input type="number" class="form-control" name="zcg" id="id_zcg">
+        </div>
+        <div class="col-md-4">
+            <label for="" class="form-label">Responsable:</label>
+            <input type="text" class="form-control" value="{{ request.user.username }}" disabled>
+        </div>
+        <div class="col-12">
+            <input class="btn btn-primary" type="submit" value="Cargar" role="button">
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
+    </div>
+    <hr>
+    <div>
+        <a href="{% url 'partstr:home' %}">Home</a>
+    </div>
+
+</div>
 {% endblock content %}

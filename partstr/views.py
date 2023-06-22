@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required #permite retringir acceso a las págs.
-from .models import Part
+from .models import Part, Level, Status, PnType
 from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -80,8 +80,17 @@ def partcreate(request):
             part.resp = request.user
             part.save()
             return redirect('home')
+        print(form.errors) #Si hay errores, los imprime en la terminal.
 
-    context = {'form':form}
+    levels = Level.objects.all()
+    status = Status.objects.all()
+    pntypes = PnType.objects.all()
+    assemblies = Part.objects.filter(pntype=1) #Devuelve conjuntos solamente
+
+    context = {'form':form, 'levels':levels,
+               'status':status, 'pntypes':pntypes,
+               'assemblies':assemblies}
+
     return render(request, 'partstr/partcreate.html', context) 
 
 @login_required(login_url='partstr:login')
