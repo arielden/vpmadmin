@@ -93,6 +93,24 @@ def partcreate(request):
 
     return render(request, 'partstr/partcreate.html', context) 
 
+# @login_required(login_url='partstr:login')
+# def partupdate(request, pk):
+#     part = Part.objects.get(id=pk) #Asignamos una parte (mediante su id) a la variable "part"
+#     form = PartCreateForm(instance=part) # Al usar instance, llenamos el form con el objeto part
+
+#     #Se encarga de validar que el usuario que accede a esta vista sea quien creó el contenido.
+#     if request.user != part.resp:
+#         return HttpResponse('Acceso no permitido')
+    
+#     if request.method == 'POST':
+#         form = PartCreateForm(request.POST, instance=part)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+
+#     context = {'form': form}
+#     return render(request, 'partstr/partcreate.html', context)
+
 @login_required(login_url='partstr:login')
 def partupdate(request, pk):
     part = Part.objects.get(id=pk) #Asignamos una parte (mediante su id) a la variable "part"
@@ -107,9 +125,17 @@ def partupdate(request, pk):
         if form.is_valid():
             form.save()
             return redirect('home')
+        
+    levels = Level.objects.all()
+    status = Status.objects.all()
+    pntypes = PnType.objects.all()
+    assemblies = Part.objects.filter(pntype=1) #Devuelve conjuntos solamente
 
-    context = {'form': form}
-    return render(request, 'partstr/partcreate.html', context)
+    context = {'form': form, 'part':part,
+               'levels':levels, 'status':status,
+               'pntypes':pntypes, 'assemblies':assemblies}
+    
+    return render(request, 'partstr/partupdate.html', context)
 
 @login_required(login_url='partstr:login')
 def partdelete(request, pk):
