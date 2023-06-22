@@ -2,25 +2,6 @@
 
 {% block content %}
 
-<!-- <div class="central">
-    <h3>Crear / Modificar Parte</h3>
-    <hr>
-    <div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <div>
-        <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
-    </div>
-    <hr>
-    <div>
-        <a href="{% url 'partstr:home' %}">Home</a>
-    </div>
-</div> -->
-
 <div class="central">
     <h3>Crear Parte</h3>
     <hr>
@@ -63,8 +44,8 @@
         </div>
         <div class="col-md-12">
             <label for="id_parent" class="form-label">CSI:</label>
-            <select class="form-select" name="parent" id="id_parent">
-                <option selected>Seleccione CSI</option>
+            <select class="form-select" name="parent" id="id_parent" aria-placeholder="Cargue csi">
+                <option selected></option>
                 {% for assy in assemblies %}
                     <option value="{{ assy.id }}">{{ assy.partnumber }} </option>
                 {% endfor %}

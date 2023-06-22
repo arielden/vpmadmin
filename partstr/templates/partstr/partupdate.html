@@ -3,14 +3,14 @@
 {% block content %}
 
 <div class="central">
-    <h3>Crear Parte</h3>
+    <h3>Actualizar Parte</h3>
     <hr>
     <form method="POST" class="row g-3">
         {% csrf_token %}
         <div class="col-md-4">
           <label for="id_level" class="form-label">Nivel:</label>
             <select class="form-select" name="level" id="id_level">
-                <option selected>{{ part.level}}</option>
+                <option value="{{part.level.id}}" selected>{{ part.level}}</option>
                 {% for level in levels %}
                     {% if level != part.level %}
                         <option value="{{ level.id }}">{{ level.name }} </option>
@@ -20,18 +20,24 @@
         </div>
         <div class="col-md-4">
           <label for="id_pntype" class="form-label">Tipo:</label>
-          <select class="form-select" name="pntype" id="id_pntype" selected="{{ part.pntype }}">
+          <select class="form-select" name="pntype" id="id_pntype">
+            <option value="{{part.pntype.id}}" selected>{{part.pntype}}</option>
             {% for type in pntypes %}
-                <option value="{{ type.id }}">{{ type.name }} </option>
+                {% if type != part.pntype %}
+                    <option value="{{ type.id }}">{{ type.name }} </option>
+                {% endif %}
             {% endfor %}
             </select>
         </div>
         <div class="col-md-4">
             <label for="id_status" class="form-label">Madurez:</label>
             <select class="form-select" name="status" id="id_status" selected="{{ part.status }}">
-              {% for partstatus in status %}
-                  <option value="{{ partstatus.id }}">{{ partstatus.name }} </option>
-              {% endfor %}
+                <option value="{{part.status.id}}" selected>{{part.status}}</option>
+                {% for partstatus in status %}
+                    {% if partstatus != part.status %}
+                        <option value="{{ partstatus.id }}">{{ partstatus.name }} </option>
+                    {% endif %}
+                {% endfor %}
               </select>
         </div>
         <div class="col-md-6">
@@ -44,7 +50,8 @@
         </div>
         <div class="col-md-12">
             <label for="id_parent" class="form-label">CSI:</label>
-            <select class="form-select"  name="parent" id="id_parent" selected="{{ part.parent }}">
+            <select class="form-select"  name="parent" id="id_parent">
+                <option value="{{part.parent.id}}" selected>{{part.parent}}</option>
                 {% for assy in assemblies %}
                     <option value="{{ assy.id }}">{{ assy.partnumber }} </option>
                 {% endfor %}
@@ -71,7 +78,7 @@
             <input type="text" class="form-control" value="{{ request.user.username }}" disabled>
         </div>
         <div class="col-12">
-            <input class="btn btn-primary" type="submit" value="Cargar" role="button">
+            <input class="btn btn-primary" type="submit" value="Actualizar" role="button">
         </div>
     </form>
     <br>
