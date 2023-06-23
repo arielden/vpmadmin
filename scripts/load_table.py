@@ -11,9 +11,9 @@ def run():
         n = 0
         for row in reader:
             #print(row)
-            user = User.objects.get(username='arield')
-            pnlevel, _ = Level.objects.get_or_create(level=row[0])
-            ptype, _ = PnType.objects.get_or_create(pntype=row[3])
+            user = User.objects.get(username='denaro')
+            pnlevel, _ = Level.objects.get_or_create(name=row[0])
+            ptype, _ = PnType.objects.get_or_create(name=row[3])
 
             part = Part(partnumber = row[1],
                         designation = row[2],
