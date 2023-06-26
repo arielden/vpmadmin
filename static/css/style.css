@@ -184,3 +184,28 @@ input {
 .list-group {
     --bs-list-group-bg: #2a2b32;
     --bs-list-group-color: #dfdfe4;}
+
+.form-select {
+    background-color:#343541;
+    color:#eee;
+}
+
+.form-control {
+    background-color: #343541;
+    color: #eee;
+}
+
+.custom-input {
+    background-color: #343541;
+    color: #eee;
+}
+
+.custom-input2:disabled {
+    background-color:#343541;
+    color:#eee;
+}
+
+.custom-input:focus {
+    background-color: #343541;
+    color:#eee;
+}

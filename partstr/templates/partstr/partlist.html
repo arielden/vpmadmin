@@ -10,7 +10,7 @@
             <a href="{% url 'partstr:partlist' request.user.id %}">Mi lista</a><br>
         </h5>
     {% else %}
-        <h2>Partes de {{ user.username }}</h2><br>
+        <h2>Partes de {{ user.first_name }} {{ user.last_name }} </h2><br>
         <h5>
             <a href="{% url 'partstr:partlist' 0 %}">Ver todas</a><br>
         </h5>
@@ -24,10 +24,9 @@
             {% for part in partnumbers %}
                     <li class="list-group-item">
                         <a href="{% url 'partstr:partupdate' part.id %}">{{ part.partnumber }}</a>_{{ part.designation }}
-                        {% if part.resp == request.user %}
-                            <!-- Delete button here! -->
+                        <!-- {% if part.resp == request.user %}
                             <a class="btn btn-outline-danger btn-sm" href="{% url 'partstr:partdelete' part.id %}" role="button">Eliminar</a>
-                        {% endif %}
+                        {% endif %} -->
                     </li>
             {% endfor %}
         </ul>
