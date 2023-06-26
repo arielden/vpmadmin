@@ -42,11 +42,11 @@
         </div>
         <div class="col-md-6">
             <label for="id_partnumber" class="form-label">Número de parte:</label>
-            <input type="text" class="form-control" value="{{ part.partnumber }}" name="partnumber" required id="id_partnumber">
+            <input type="text" class="form-control custom-input" value="{{ part.partnumber }}" name="partnumber" required id="id_partnumber">
         </div>
         <div class="col-md-6">
             <label for="id_designation" class="form-label">Designación:</label>
-            <input type="text" class="form-control" value="{{ part.designation }}" name="designation" required id="id_designation">
+            <input type="text" class="form-control custom-input" value="{{ part.designation }}" name="designation" required id="id_designation">
         </div>
         <div class="col-md-12">
             <label for="id_parent" class="form-label">CSI:</label>
@@ -59,23 +59,23 @@
         </div>
         <div class="col-md-3">
             <label for="id_mass" class="form-label">Masa (g):</label>
-            <input type="number" class="form-control" value="{{ part.mass }}" name="mass" id="id_mass">
+            <input type="number" class="form-control custom-input" value="{{ part.mass }}" name="mass" id="id_mass">
         </div>
         <div class="col-md-3">
             <label for="id_xcg" class="form-label">Xcg (mm):</label>
-            <input type="number" class="form-control" value="{{ part.xcg }}" name="xcg" id="id_xcg">
+            <input type="number" class="form-control custom-input" value="{{ part.xcg }}" name="xcg" id="id_xcg">
         </div>
         <div class="col-md-3">
             <label for="id_ycg" class="form-label">Ycg (mm):</label>
-            <input type="number" class="form-control" value="{{ part.ycg }}" name="ycg" id="id_ycg">
+            <input type="number" class="form-control custom-input" value="{{ part.ycg }}" name="ycg" id="id_ycg">
         </div>
         <div class="col-md-3">
             <label for="id_zcg" class="form-label">Zcg (mm):</label>
-            <input type="number" class="form-control" value="{{ part.zcg }}" name="zcg" id="id_zcg">
+            <input type="number" class="form-control custom-input" value="{{ part.zcg }}" name="zcg" id="id_zcg">
         </div>
         <div class="col-md-4">
             <label for="" class="form-label">Responsable:</label>
-            <input type="text" class="form-control" value="{{ request.user.username }}" disabled>
+            <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" disabled>
         </div>
         <div class="col-12">
             <input class="btn btn-primary" type="submit" value="Actualizar" role="button">
