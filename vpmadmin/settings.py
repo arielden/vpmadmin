@@ -92,8 +92,16 @@ DATABASES = {
         'NAME': 'vpmadmin',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '0.0.0.0',
-        'PORT': '33060',
+
+        #----Windows conf-------
+        'HOST': 'localhost',
+        'PORT': '3306',
+        #-----------------------
+
+        #----Linux conf-------
+        # 'HOST': '0.0.0.0',
+        # 'PORT': '33060',
+        #---------------------
     }
 }
 

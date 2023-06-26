@@ -11,7 +11,7 @@ def run():
         n = 0
         for row in reader:
             #print(row)
-            user = User.objects.get(username='denaro')
+            user = User.objects.get(username='arield')
             pnlevel, _ = Level.objects.get_or_create(name=row[0])
             ptype, _ = PnType.objects.get_or_create(name=row[3])
 
