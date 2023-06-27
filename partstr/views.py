@@ -116,7 +116,7 @@ def partupdate(request, pk):
         form = PartCreateForm(request.POST, instance=part)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('partstr:partlist', user_id=request.user.id)
         
     
     return render(request, 'partstr/partupdate.html', context)
