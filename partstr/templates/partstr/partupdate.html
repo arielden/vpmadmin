@@ -59,27 +59,27 @@
         </div>
         <div class="col-md-3">
             <label for="id_mass" class="form-label">Masa (g):</label>
-            <input type="number" class="form-control custom-input" value="{{ part.mass }}" name="mass" id="id_mass">
+            <input type="number" class="form-control custom-input" value="{{ part.mass }}" name="mass" step="0.1" id="id_mass">
         </div>
         <div class="col-md-3">
             <label for="id_xcg" class="form-label">Xcg (mm):</label>
-            <input type="number" class="form-control custom-input" value="{{ part.xcg }}" name="xcg" id="id_xcg">
+            <input type="number" class="form-control custom-input" value="{{ part.xcg }}" name="xcg" step="0.1" id="id_xcg">
         </div>
         <div class="col-md-3">
             <label for="id_ycg" class="form-label">Ycg (mm):</label>
-            <input type="number" class="form-control custom-input" value="{{ part.ycg }}" name="ycg" id="id_ycg">
+            <input type="number" class="form-control custom-input" value="{{ part.ycg }}" name="ycg" step="0.1" id="id_ycg">
         </div>
         <div class="col-md-3">
             <label for="id_zcg" class="form-label">Zcg (mm):</label>
-            <input type="number" class="form-control custom-input" value="{{ part.zcg }}" name="zcg" id="id_zcg">
+            <input type="number" class="form-control custom-input" value="{{ part.zcg }}" name="zcg" step="0.1" id="id_zcg">
         </div>
         <div class="col-md-4">
             <label for="" class="form-label">Responsable:</label>
             <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" disabled>
         </div>
-        <div class="row g-3">
+        <div class="row g-4">
             <div class="col-md-3">
-                <input class="btn btn-outline-success" type="submit" value="Actualizar" role="button">
+                <input class="btn btn-outline-primary" type="submit" value="Actualizar" role="button">
             </div>
             <div class="col-md-3">
                 <a href="{% url 'partstr:partdelete' part.id %}" type="button" class="btn btn-outline-danger">Borrar</a>
