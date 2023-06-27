@@ -77,8 +77,13 @@
             <label for="" class="form-label">Responsable:</label>
             <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" disabled>
         </div>
-        <div class="col-12">
-            <input class="btn btn-primary" type="submit" value="Actualizar" role="button">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <input class="btn btn-outline-success" type="submit" value="Actualizar" role="button">
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'partstr:partdelete' part.id %}" type="button" class="btn btn-outline-danger">Borrar</a>
+            </div>
         </div>
     </form>
     <br>

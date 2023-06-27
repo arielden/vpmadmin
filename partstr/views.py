@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+# from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required #permite retringir acceso a las págs.
 from .models import Part, Level, Status, PnType
@@ -98,16 +98,6 @@ def partupdate(request, pk):
     part = Part.objects.get(id=pk) #Asignamos una parte (mediante su id) a la variable "part"
     form = PartCreateForm(instance=part) # Al usar instance, llenamos el form con el objeto part
 
-    #Se encarga de validar que el usuario que accede a esta vista sea quien creó el contenido.
-    if request.user != part.resp:
-        return HttpResponse('Acceso no permitido')
-    
-    if request.method == 'POST':
-        form = PartCreateForm(request.POST, instance=part)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-        
     levels = Level.objects.all()
     status = Status.objects.all()
     pntypes = PnType.objects.all()
@@ -116,6 +106,18 @@ def partupdate(request, pk):
     context = {'form': form, 'part':part,
                'levels':levels, 'status':status,
                'pntypes':pntypes, 'assemblies':assemblies}
+    
+    #Si no es el propietario de la parte, muestra el form "readonly".
+    if request.user != part.resp:
+        # return HttpResponse('Acceso no permitido')
+        return render(request, 'partstr/partreadonly.html', context)
+    
+    if request.method == 'POST':
+        form = PartCreateForm(request.POST, instance=part)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        
     
     return render(request, 'partstr/partupdate.html', context)
 

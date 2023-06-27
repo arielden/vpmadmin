@@ -190,10 +190,21 @@ input {
     color:#eee;
 }
 
+.form-select:disabled {
+    background-color:#343541;
+    color:#eee;
+}
+
 .form-control {
     background-color: #343541;
     color: #eee;
 }
+
+.form-control:disabled {
+    background-color: #343541;
+    color: #eee;
+}
+
 
 .custom-input {
     background-color: #343541;
