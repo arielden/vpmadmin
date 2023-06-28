@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Iterable, Optional
 from django.db import models
 
 # Create your models here.
@@ -78,9 +78,8 @@ class Part(models.Model):
                                blank=True,
                                related_name='children')
     level = models.ForeignKey(Level,
-                              on_delete = models.SET_NULL,
-                              null=True,
-                              blank=True,)
+                              on_delete = models.SET_DEFAULT,
+                              default=Level.objects.get(id=1))
     
     objects = models.Manager() # Default
     released = ReleasedManager() # Custom manager for released parts!
@@ -93,3 +92,11 @@ class Part(models.Model):
 
     def __str__(self) -> str:
         return self.partnumber
+    
+    #Next lines, overwrites save method for Part objects
+    def save(self, *args, **kwargs):
+        if self.parent:
+            self.level = Level.objects.get(name=self.parent.level.id + 1)
+        else:
+            self.level = Level.objects.get(id=1)
+        super().save(*args, **kwargs)
