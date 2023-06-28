@@ -78,15 +78,15 @@
             <input type="number" class="form-control custom-input" value="{{ part.zcg }}" name="zcg" step="0.1" id="id_zcg">
         </div>
         <div class="col-md-4">
-            <label for="" class="form-label">Responsable:</label>
-            <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" disabled>
+            <label for="id_resp" class="form-label">Responsable:</label>
+            <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" name="resp" id="id_resp" disabled>
         </div>
         <div class="row g-4">
             <div class="col-md-3">
                 <input class="btn btn-outline-primary" type="submit" value="Actualizar" role="button">
             </div>
             <div class="col-md-3">
-                <a href="{% url 'partstr:partdelete' part.id %}" type="button" class="btn btn-outline-danger">Borrar</a>
+                <a href="{% url 'partstr:partdelete' part.id %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</a>
             </div>
         </div>
     </form>
@@ -102,11 +102,11 @@
     <hr>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<!-- <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Borrar (modal)
 </button>
   
-  <!-- Modal -->
+
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -126,7 +126,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
+
+{% include 'partstr/delete.html' %}
+
 {% endblock content %}
