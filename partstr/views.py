@@ -123,8 +123,11 @@ def partupdate(request, pk):
 
 @login_required(login_url='partstr:login')
 def partdelete(request, pk):
+    print(f"Entrando a partdelete con pk={pk}")
     part = Part.objects.get(id=pk)
+    print(f"Parte a eliminar: {part}")
     if request.method == 'POST':
         part.delete()
-        return redirect('home')
+        print("Parte eliminada")
+        return redirect('partstr:partlist', user_id=request.user.id)
     return render(request, 'partstr/delete.html', {'obj':part})
