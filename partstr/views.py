@@ -131,3 +131,8 @@ def partdelete(request, pk):
         print("Parte eliminada")
         return redirect('partstr:partlist', user_id=request.user.id)
     return render(request, 'partstr/delete.html', {'obj':part})
+
+def test(request):
+    partes = Part.objects.all()
+    context = {'partes': partes}
+    return render(request, 'partstr/test.html', context)

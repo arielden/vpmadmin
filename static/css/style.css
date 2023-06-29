@@ -182,7 +182,7 @@ input {
 
 /* Overriding bootstrap parameters */
 .list-group {
-    --bs-list-group-bg: #2a2b32;
+    --bs-list-group-bg: #343541;
     --bs-list-group-color: #dfdfe4;}
 
 .modal {
@@ -240,4 +240,13 @@ input {
     color:#eee;
 }
 
+/* test */
+.list-group-item {
+    background-color: var(--bs-list-group-bg);
+    border: var(--bs-list-group-border-width) solid #495057;
 
+}
+
+.card {
+    --bs-card-bg: #fff;
+}
