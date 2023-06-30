@@ -13,5 +13,5 @@ urlpatterns = [
     path('partcreate/', views.partcreate, name='partcreate'),
     path('partupdate/<int:pk>/', views.partupdate, name='partupdate'),
     path('partdelete/<int:pk>/', views.partdelete, name='partdelete'),
-    path('test/', views.test, name='test'),
+    path('structure/', views.structure, name='structure'),
 ]

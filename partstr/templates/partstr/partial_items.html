@@ -1,9 +1,9 @@
 <li class="li-tree">
-    {{ parte.partnumber }}
-    {% if parte.children.all %}
+    {{ part.partnumber }}
+    {% if part.children.all %}
       <ul class="ul-tree">
-        {% for hijo in parte.children.all %}
-          {% include 'partstr/partial_items.html' with parte=hijo %}
+        {% for child in part.children.all %}
+          {% include 'partstr/partial_items.html' with part=child %}
         {% endfor %}
       </ul>
     {% endif %}

@@ -132,7 +132,9 @@ def partdelete(request, pk):
         return redirect('partstr:partlist', user_id=request.user.id)
     return render(request, 'partstr/delete.html', {'obj':part})
 
-def test(request):
-    partes = Part.objects.all()
-    context = {'partes': partes}
-    return render(request, 'partstr/test.html', context)
+def structure(request):
+    assyparts = Part.objects.filter(pntype=2)
+    rootnode = Part.objects.get(level=1)
+
+    context = {'rootnode':rootnode}
+    return render(request, 'partstr/structure.html', context)
