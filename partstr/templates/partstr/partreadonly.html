@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="central">
+    <h3>{{ part.partnumber }}</h3>
+    <hr>
+    <fieldset disabled>
+        <form method="GET" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-4">
+              <label for="id_level" class="form-label">Nivel:</label>
+                <select class="form-select" name="level" id="id_level">
+                    <option value="{{part.level.id}}" selected>{{ part.level}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+              <label for="id_pntype" class="form-label">Tipo:</label>
+                <select class="form-select" name="pntype" id="id_pntype">
+                    <option value="{{part.pntype.id}}" selected>{{part.pntype}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="id_status" class="form-label">Madurez:</label>
+                <select class="form-select" name="status" id="id_status" selected="{{ part.status }}">
+                    <option value="{{part.status.id}}" selected>{{part.status}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="id_partnumber" class="form-label">Número de parte:</label>
+                <input type="text" class="form-control custom-input" value="{{ part.partnumber }}" name="partnumber" required id="id_partnumber">
+            </div>
+            <div class="col-md-6">
+                <label for="id_designation" class="form-label">Designación:</label>
+                <input type="text" class="form-control custom-input" value="{{ part.designation }}" name="designation" required id="id_designation">
+            </div>
+            <div class="col-md-12">
+                <label for="id_parent" class="form-label">CSI:</label>
+                <select class="form-select"  name="parent" id="id_parent">
+                    <option value="{{part.parent.id}}" selected>{{part.parent}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="id_mass" class="form-label">Masa (g):</label>
+                <input type="number" class="form-control custom-input" value="{{ part.mass }}" name="mass" id="id_mass">
+            </div>
+            <div class="col-md-3">
+                <label for="id_xcg" class="form-label">Xcg (mm):</label>
+                <input type="number" class="form-control custom-input" value="{{ part.xcg }}" name="xcg" id="id_xcg">
+            </div>
+            <div class="col-md-3">
+                <label for="id_ycg" class="form-label">Ycg (mm):</label>
+                <input type="number" class="form-control custom-input" value="{{ part.ycg }}" name="ycg" id="id_ycg">
+            </div>
+            <div class="col-md-3">
+                <label for="id_zcg" class="form-label">Zcg (mm):</label>
+                <input type="number" class="form-control custom-input" value="{{ part.zcg }}" name="zcg" id="id_zcg">
+            </div>
+            <div class="col-md-4">
+                <label for="" class="form-label">Responsable:</label>
+                <input type="text" class="form-control custom-input2" value="{{ part.resp }}" disabled>
+            </div>
+        </form>
+    </fieldset>
+    <br>
+    <div class="row g-4">
+        <div class="col-md-2">
+            <a href="{{ request.META.HTTP_REFERER }}" type="button" class="btn btn-outline-primary">Volver</a>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <a href="{% url 'partstr:home' %}">Home</a>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+<li class="li-tree">
+    {{ parte.partnumber }}
+    {% if parte.children.all %}
+      <ul class="ul-tree">
+        {% for hijo in parte.children.all %}
+          {% include 'partstr/partial_items.html' with parte=hijo %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </li>
+  
+  
