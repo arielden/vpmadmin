@@ -182,7 +182,7 @@ input {
 
 /* Overriding bootstrap parameters */
 .list-group {
-    --bs-list-group-bg: #343541;
+    --bs-list-group-bg: #3e3f4b;
     --bs-list-group-color: #dfdfe4;}
 
 .modal {

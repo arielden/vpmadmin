@@ -94,13 +94,13 @@ DATABASES = {
         'PASSWORD': 'root',
 
         #----Windows conf-------
-        'HOST': 'localhost',
-        'PORT': '3306',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
         #-----------------------
 
         #----Linux conf-------
-        # 'HOST': '0.0.0.0',
-        # 'PORT': '33060',
+        'HOST': '0.0.0.0',
+        'PORT': '33060',
         #---------------------
     }
 }

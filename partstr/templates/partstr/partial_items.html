@@ -1,5 +1,8 @@
 <li class="li-tree">
-    {{ part.partnumber }}
+    
+  <span>{{ part.partnumber }}</span>
+    
+
     {% if part.children.all %}
       <ul class="ul-tree">
         {% for child in part.children.all %}
