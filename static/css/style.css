@@ -176,7 +176,7 @@ input {
 
 .main-content .central {
     width:80%;
-    max-width: 600px;
+    max-width: 1000px;
     margin-left: 150px;
 }
 
@@ -189,8 +189,6 @@ input {
     --bs-modal-header-border-color: #343541;
     --bs-modal-bg: #343541;
 }
-
-
 
 .modal-body {
     background-color:#343541;
@@ -240,13 +238,12 @@ input {
     color:#eee;
 }
 
-/* test */
-.list-group-item {
-    background-color: var(--bs-list-group-bg);
-    border: var(--bs-list-group-border-width) solid #495057;
-
+.table>:not(caption)>*>* {
+    padding: 0.4rem 0.6rem;
+    color:#d0d1d4;
 }
 
-.card {
-    --bs-card-bg: #fff;
+.table-dark {
+    --bs-table-bg: #2e2f39;
+    --bs-table-hover-bg: #292536;
 }

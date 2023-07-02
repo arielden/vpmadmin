@@ -19,18 +19,38 @@
 
     <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
-    <div class="card" style="width: 600px;">
+    <!-- <div class="card" style="width: 600px;">
         <ul class="list-group list-group-flush" >
             {% for part in partnumbers %}
                     <li class="list-group-item">
                         <a href="{% url 'partstr:partupdate' part.id %}">{{ part.partnumber }}</a>_{{ part.designation }}
-                        <!-- {% if part.resp == request.user %}
-                            <a class="btn btn-outline-danger btn-sm" href="{% url 'partstr:partdelete' part.id %}" role="button">Eliminar</a>
-                        {% endif %} -->
                     </li>
             {% endfor %}
         </ul>
-    </div>
+    </div> -->
+
+
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">PN</th>
+                <th scope="col">Designación</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Propiedades</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for part in partnumbers %}
+            <tr>
+                <th scope="row">{{part.partnumber}}</th>
+                <th>{{part.designation}}</th>
+                <th>{{part.status}}</th>
+                <th><a href="{% url 'partstr:partupdate' part.id %}">Acceder</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <br>
     <a href="{% url 'partstr:home' %}">Home</a>
 </div>
