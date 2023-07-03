@@ -2,45 +2,46 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset='utf-8'>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
 
         <title>{% block title %}{% endblock %}</title>
 
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/tree.css' %}">
+
     </head>
-<body>
+<body className='snippet-body'>
     {% include 'sidebar.html' %}
-    
-    <div class="main-content">
+    <section class="home">
+        <div class="title">Contenido</div>
         <div>
             {% if messages %}
-            <ul class="messages">
+            <ul>
                 {% for message in messages %}
-                <li>{{ message }}</li>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <li>
+                        <strong>Holy guacamole!</strong> {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </li>
+                </div>
                 {% endfor %}
             </ul>
             {% endif %}
         </div>
         <hr>
-        <div>
+        <div class="inner-cont">
             {% block content %}
             {% endblock %}
         </div>
-    </div>
+        
+        
+    </section>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
-</body>
-<script>
-    let btn = document.querySelector('#btn')
-    let sidebar = document.querySelector('.sidebar')
-    
-    btn.onclick = function(){
-        sidebar.classList.toggle('active');
-    }
-    </script>
+    <script type='text/javascript'src="{% static 'js/sidebar.js' %}"></script>
+    </body>
 </html>
