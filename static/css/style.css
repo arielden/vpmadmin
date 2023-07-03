@@ -317,6 +317,8 @@ body.dark .switch::before{
 .home .inner-cont{
     font-size: 18px;
     font-weight: 300;
+    min-width: 720px;
+    max-width: 950px;
     color: var(--text-color);
     padding: 12px 60px;
 }

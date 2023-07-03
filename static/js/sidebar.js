@@ -46,10 +46,10 @@ modeSwitch.addEventListener("click", () => {
     // table.classList.toggle("dark");
 
     if (body.classList.contains("dark")) {
-        modeText.innerText = "Light mode";
+        modeText.innerText = "Modo Claro";
         setCookie('mode', 'dark', 10);
     } else {
-        modeText.innerText = "Dark mode";
+        modeText.innerText = "Modo Oscuro";
         setCookie('mode', 'light', 10);
     }
 });

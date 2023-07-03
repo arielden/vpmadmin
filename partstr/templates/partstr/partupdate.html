@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="central">
+<div>
     <h3>Actualizar Parte</h3>
     <hr>
     <form method="POST" class="row g-3">
@@ -98,37 +98,9 @@
     <div>
         <a href="{% url 'partstr:home' %}">Home</a>
     </div>
-
-    <hr>
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Borrar (modal)
-</button>
-  
-
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Atención!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <small>Está seguro que desea eliminar la parte {{part.partnumber}} ?</small>
-          <div>
-              <small>Esta operación no se puede deshacer</small>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 </div>
+
+<hr>
 
 {% include 'partstr/delete.html' %}
 
