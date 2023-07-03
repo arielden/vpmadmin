@@ -43,5 +43,23 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script type='text/javascript'src="{% static 'js/sidebar.js' %}"></script>
+    <script>
+        window.onload = function() {
+            const modeStatus = getCookie('mode');
+            if (modeStatus === 'dark') {
+                body.classList.add('dark');
+                modeText.innerText = "Light mode";
+            } else {
+                body.classList.remove('dark');
+                modeText.innerText = "Dark mode";
+            }
+            // const modePosition = getCookie('position');
+            // if (modePosition === 'close') {
+            //     sidebar.classList.remove('close');
+            // } else {
+            //     sidebar.classList.add('close');
+            // }
+        };
+    </script>
     </body>
 </html>
