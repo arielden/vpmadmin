@@ -6,6 +6,7 @@ from .models import Part, Level, Status, PnType
 from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 
 def loginPage(request):
 
@@ -43,14 +44,25 @@ def logoutUser(request):
 
 @login_required(login_url='partstr:login') #el decorator restringe el acceso si no encuentra usuario autenticado
 def partlist(request, user_id):
-    # partnumbers = Part.objects.all()
 
+    #Tomar 'q' y 'u' de la url
+    p = request.GET.get('p') if request.GET.get('p') != None else ''
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    u = request.GET.get('u') if request.GET.get('u') != None else ''
+
+    allstatus = Status.objects.all()
+
+    # Traer las partes correspondientes a usuario pasado como parámetro
+    # y aplicar también filtro por 'status' usando variable 'q'
     if user_id == request.user.id:
-        partnumbers = Part.objects.filter(resp=user_id)
+        partnumbers = Part.objects.filter(
+            # User método Q para multiples queries.
+            Q(partnumber__icontains=p) &
+            Q(status__name__icontains=q)&
+            Q(resp__username__icontains=u) 
+        )
         user = User.objects.get(id=user_id)
-    elif user_id == 0:
-        partnumbers = Part.objects.all()
-        user = user_id
+
     else:
         partnumbers = None
         user = None
@@ -60,6 +72,7 @@ def partlist(request, user_id):
     context = {'partnumbers':partnumbers,
                'user':user,
                'partnumbers_count':partnumbers_count,
+               'allstatus':allstatus,
                }
 
     return render(request,

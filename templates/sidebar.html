@@ -17,12 +17,16 @@
 
     <div class="menu-bar">
         <div class="menu">
-
-            <li class="search-box">
-                <i class='bx bx-search icon'></i>
-                <input type="text" placeholder="Search...">
-            </li>
-
+            {% if request.user.is_authenticated %}
+                <form method="GET" action="{% url 'partstr:partlist' request.user.id %}">
+            {% else %}
+                <form method="GET" action="{% url 'partstr:partlist' 0 %}">
+            {% endif %}
+                    <li class="search-box">
+                        <i class='bx bx-search icon'></i>
+                        <input type="text" name="p" placeholder="Número de parte">
+                    </li>
+                </form>
             <ul class="menu-links">
                 <li class="nav-link">
                     <a href="{% url 'partstr:home' %}">

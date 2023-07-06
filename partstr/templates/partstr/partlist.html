@@ -3,21 +3,16 @@
 {% block title %}Estructura VPM - Lista{% endblock %}
 
 {% block content %}
-<div class="central">
-    {% if user == 0 %}
-        <h3>Listado completo.</h3><br>
-        <h5>
-            <a href="{% url 'partstr:partlist' request.user.id %}">Mi lista</a><br>
-        </h5>
-    {% else %}
-        <h3>Partes de {{ user.first_name }} {{ user.last_name }} </h3><br>
-        <h5>
-            <a href="{% url 'partstr:partlist' 0 %}">Ver todas</a><br>
-        </h5>
-    {% endif %}
-    <br>
+<div>
+    <h3>Partes de {{ user.first_name }} {{ user.last_name }} </h3><br>
 
     <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
+
+    <a href="{% url 'partstr:partlist' request.user.id %}">Todas</a>
+    {% for status in allstatus %}
+        <a href="{% url 'partstr:partlist' request.user.id %}?u={{user.username}}&q={{status.name}}">{{status.name}}</a>
+    {% endfor %}
+    
 
     <table class="table table-striped table-hover">
         <thead>

@@ -81,18 +81,18 @@
             <label for="id_resp" class="form-label">Responsable:</label>
             <input type="text" class="form-control custom-input2" value="{{ request.user.username }}" name="resp" id="id_resp" disabled>
         </div>
-        <div class="row g-4">
-            <div class="col-md-3">
+
+        <!-- Buttons! -->
+        <div class="btn-group" role="group" aria-label="Basic example">
                 <input class="btn btn-outline-primary" type="submit" value="Actualizar" role="button">
-            </div>
-            <div class="col-md-3">
                 <a href="{% url 'partstr:partdelete' part.id %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</a>
-            </div>
         </div>
+
     </form>
     <br>
     <div>
-        <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a>
+        <a href="{{ request.META.HTTP_REFERER }}" type="button" class="btn btn-outline-secondary">Volver</a>
+        <!-- <a href="{% url 'partstr:partlist' request.user.id %}">Lista de partes</a> -->
     </div>
     <hr>
     <div>
