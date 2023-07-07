@@ -18,9 +18,9 @@
     <div class="menu-bar">
         <div class="menu">
             {% if request.user.is_authenticated %}
-                <form method="GET" action="{% url 'partstr:partlist' request.user.id %}">
+                <form method="GET" action="{% url 'partstr:partlist' %}">
             {% else %}
-                <form method="GET" action="{% url 'partstr:partlist' 0 %}">
+                <form method="GET" action="{% url 'partstr:login' %}">
             {% endif %}
                     <li class="search-box">
                         <i class='bx bx-search icon'></i>

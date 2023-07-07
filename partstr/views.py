@@ -43,7 +43,7 @@ def logoutUser(request):
     return redirect('home')
 
 @login_required(login_url='partstr:login') #el decorator restringe el acceso si no encuentra usuario autenticado
-def partlist(request, user_id):
+def partlist(request):
 
     #Tomar 'q' y 'u' de la url
     p = request.GET.get('p') if request.GET.get('p') != None else ''
@@ -54,23 +54,16 @@ def partlist(request, user_id):
 
     # Traer las partes correspondientes a usuario pasado como parámetro
     # y aplicar también filtro por 'status' usando variable 'q'
-    if user_id == request.user.id:
-        partnumbers = Part.objects.filter(
-            # User método Q para multiples queries.
-            Q(partnumber__icontains=p) &
-            Q(status__name__icontains=q)&
-            Q(resp__username__icontains=u) 
-        )
-        user = User.objects.get(id=user_id)
-
-    else:
-        partnumbers = None
-        user = None
+    partnumbers = Part.objects.filter(
+        # User método Q para multiples queries.
+        Q(partnumber__icontains=p) &
+        Q(status__name__icontains=q)&
+        Q(resp__username__icontains=u) 
+    )
 
     partnumbers_count = partnumbers.count()
 
     context = {'partnumbers':partnumbers,
-               'user':user,
                'partnumbers_count':partnumbers_count,
                'allstatus':allstatus,
                }
@@ -129,7 +122,7 @@ def partupdate(request, pk):
         form = PartCreateForm(request.POST, instance=part)
         if form.is_valid():
             form.save()
-            return redirect('partstr:partlist', user_id=request.user.id)
+            return redirect('partstr:partlist')
         
     
     return render(request, 'partstr/partupdate.html', context)

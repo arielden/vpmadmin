@@ -23,6 +23,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
 }
 
 :root{
@@ -356,3 +357,8 @@ ol, ul {
 .table.dark {
     --bs-table-hover-color: #2bfb85;
 }
+
+.card {
+    --bs-card-bg: #3c47640d;
+}
+

@@ -4,38 +4,60 @@
 
 {% block content %}
 <div>
-    <h3>Partes de {{ user.first_name }} {{ user.last_name }} </h3><br>
+    <h3>Logueado como: {{ request.user.first_name }} {{ request.user.last_name }} </h3><br>
 
     <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
-    <a href="{% url 'partstr:partlist' request.user.id %}">Todas</a>
-    {% for status in allstatus %}
-        <a href="{% url 'partstr:partlist' request.user.id %}?u={{user.username}}&q={{status.name}}">{{status.name}}</a>
-    {% endfor %}
-    
-
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">PN</th>
-                <th scope="col">Designación</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Propiedades</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            {% for part in partnumbers %}
-            <tr>
-                <th scope="row">{{part.partnumber}}</th>
-                <th>{{part.designation}}</th>
-                <th>{{part.status}}</th>
-                <th><a href="{% url 'partstr:partupdate' part.id %}">Acceder</a></th>
-            </tr>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="simple-tab" data-bs-toggle="tab" data-bs-target="#simple-tab-pane" type="button" role="tab" aria-controls="simple-tab-pane" aria-selected="true">Simple</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="interm-tab" data-bs-toggle="tab" data-bs-target="#interm-tab-pane" type="button" role="tab" aria-controls="interm-tab-pane" aria-selected="false">Intermedia</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="simple-tab-pane" role="tabpanel" aria-labelledby="simple-tab" tabindex="0">
+            <!-- Acá van los controles para listado completo -->
+            <br>
+            <p>Prueba: se muestran las partes (total) filtradas por madurez únicamente</p>
+            <a href="{% url 'partstr:partlist'%}">Todas</a>
+            {% for status in allstatus %}
+                <a href="{% url 'partstr:partlist'%}?q={{status.name}}">{{status.name}}</a>
             {% endfor %}
-        </tbody>
-    </table>
+        </div>
+        <div class="tab-pane fade" id="interm-tab-pane" role="tabpanel" aria-labelledby="interm-tab" tabindex="0">
+            <!-- Acá van los controles para persona -->
+            <br>
+            <p>Prueba: se muestran las partes del usuario, filtradas por madurez</p>
+            <a href="{% url 'partstr:partlist'%}?u={{request.user.username}}">Todas</a>
+            {% for status in allstatus %}
+                <a href="{% url 'partstr:partlist'%}?u={{request.user.username}}&q={{status.name}}">{{status.name}}</a>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            ...
+        </div>
+    </div>
+
+    {% include 'partstr/partlistresult.html' %}
 
     <br>
     <a href="{% url 'partstr:home' %}">Home</a>
 </div>
+
+<script>
+// var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+// triggerTabList.forEach(function (triggerEl) {
+//     var tabTrigger = new bootstrap.Tab(triggerEl)
+
+//     triggerEl.addEventListener('click', function (event) {
+//         event.preventDefault()
+//         tabTrigger.show()
+//     })
+// })
+</script>
 {% endblock %}
