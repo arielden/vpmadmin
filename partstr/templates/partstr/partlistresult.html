@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <p>Esta es la plantilla partlistresult.html</p>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">PN</th>
+                    <th scope="col">Designación</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Propiedades</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for part in partnumbers %}
+                <tr>
+                    <th scope="row">{{part.partnumber}}</th>
+                    <th>{{part.designation}}</th>
+                    <th>{{part.status}}</th>
+                    <th><a href="{% url 'partstr:partupdate' part.id %}">Acceder</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
