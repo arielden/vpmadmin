@@ -318,7 +318,7 @@ body.dark .switch::before{
 .home .inner-cont{
     font-size: 18px;
     font-weight: 300;
-    min-width: 720px;
+    min-width: 760px;
     max-width: 950px;
     color: var(--text-color);
     padding: 12px 60px;
@@ -362,3 +362,6 @@ ol, ul {
     --bs-card-bg: #3c47640d;
 }
 
+.modal {
+    --bs-modal-bg: var(--body-color);
+}

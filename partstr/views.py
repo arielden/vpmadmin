@@ -135,7 +135,7 @@ def partdelete(request, pk):
     if request.method == 'POST':
         part.delete()
         print("Parte eliminada")
-        return redirect('partstr:partlist', user_id=request.user.id)
+        return redirect('partstr:partlist')
     return render(request, 'partstr/delete.html', {'obj':part})
 
 def structure(request):

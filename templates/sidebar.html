@@ -1,5 +1,6 @@
 {% load static %}
-<nav class="sidebar close">
+
+<nav class="sidebar close" id="sidebar">
     <header>
         <div class="image-text">
             <span class="image">
@@ -37,7 +38,6 @@
 
                 <li class="nav-link">
                     <a href="{% url 'partstr:structure' %}">
-                        <!-- <i class='bx bx-bar-chart-alt-2 icon' ></i> -->
                         <i class='bx bx-sitemap icon'></i>
                         <span class="text nav-text">Estructura</span>
                     </a>
@@ -56,14 +56,6 @@
                         <span class="text nav-text">Stats</span>
                     </a>
                 </li>
-
-                <!-- <li class="nav-link">
-                    <a href="#">
-                        <span class="image">
-                            <img src="{% static 'images/catialogo.png' %}" alt="">
-                        </span>
-                    </a>
-                </li> -->
 
             </ul>
         </div>
@@ -90,5 +82,4 @@
 
         </div>
     </div>
-
 </nav>

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset='utf-8'>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,58 +9,65 @@
 
         <title>{% block title %}{% endblock %}</title>
 
+        <link href="{% static 'images/favicon.png' %}" rel="icon" type="image/png">
         <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/tree.css' %}">
-
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        {% block script_top %}{% endblock %}
     </head>
-<body className='snippet-body'>
-    {% include 'sidebar.html' %}
-    <section class="home">
-        <div class="title">Contenido</div>
-        <div>
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <li>
-                        <strong>Holy guacamole!</strong> {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </li>
-                </div>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-        <hr>
-        <div class="inner-cont">
-            {% block content %}
-            {% endblock %}
-        </div>
+    
+    <body className='snippet-body'>
         
-        
-    </section>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script type='text/javascript'src="{% static 'js/sidebar.js' %}"></script>
-    <script>
-        window.onload = function() {
-            const modeStatus = getCookie('mode');
-            if (modeStatus === 'dark') {
-                body.classList.add('dark');
-                modeText.innerText = "Modo Claro";
+        {% include 'sidebar.html' %}
+        <script type='text/javascript' src="{% static 'js/sidebar.js' %}"></script>
+
+        <!-- Buscar variables en localStorage y setear antes que el contenido (evita flickering) -->
+        <script>
+            const theme = localStorage.getItem('mode') || 'light';
+
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
             } else {
-                body.classList.remove('dark');
-                modeText.innerText = "Modo Oscuro";
+                document.body.classList.remove('dark');
             }
-            // const modePosition = getCookie('position');
-            // if (modePosition === 'close') {
-            //     sidebar.classList.remove('close');
-            // } else {
-            //     sidebar.classList.add('close');
-            // }
-        };
-    </script>
+
+            const position = localStorage.getItem('sidebarPos') || 'close';
+            if (position === 'close') {
+                // La variable sidebar se declara previamente en sidebar.js
+                sidebar.classList.add('close');
+            } else {
+                sidebar.classList.remove('close');
+            }
+
+        </script>
+
+        {% block script_body %}{% endblock %}
+
+
+        <section class="home">
+            <div class="title">Contenido</div>
+            <div>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <li>
+                            <strong>Holy guacamole!</strong> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </li>
+                    </div>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="inner-cont">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
     </body>
 </html>

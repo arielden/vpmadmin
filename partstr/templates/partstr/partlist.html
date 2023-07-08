@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Estructura VPM - Lista{% endblock %}
+{% block title %}Estructura VPM - Lista{% endblock title%}
+
+{% block script_body %}
+<script>
+    // $(document).ready(function(){
+    //     $('button[data-bs-toggle="tab"]').on('show.bs.tab', function(e) {
+    //         localStorage.setItem('activeTab', $(e.target).attr('data-bs-target'));
+    //     });
+    //     var activeTab = localStorage.getItem('activeTab');
+    //     if(activeTab){
+    //         $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show');
+    //     }
+    // });
+
+    // const activeTab = localStorage.getItem('activeTab');
+    //     if (activeTab) {
+    //         $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show');
+    //     }
+</script>
+{% endblock script_body%}
 
 {% block content %}
 <div>
@@ -8,6 +27,7 @@
 
     <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
+    <!-- Este es el código para los tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="simple-tab" data-bs-toggle="tab" data-bs-target="#simple-tab-pane" type="button" role="tab" aria-controls="simple-tab-pane" aria-selected="true">Simple</button>
@@ -19,6 +39,8 @@
             <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
         </li>
     </ul>
+
+    <!-- Este es el código para el contenido de cada tab -->
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="simple-tab-pane" role="tabpanel" aria-labelledby="simple-tab" tabindex="0">
             <!-- Acá van los controles para listado completo -->
@@ -49,15 +71,4 @@
     <a href="{% url 'partstr:home' %}">Home</a>
 </div>
 
-<script>
-// var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
-// triggerTabList.forEach(function (triggerEl) {
-//     var tabTrigger = new bootstrap.Tab(triggerEl)
-
-//     triggerEl.addEventListener('click', function (event) {
-//         event.preventDefault()
-//         tabTrigger.show()
-//     })
-// })
-</script>
-{% endblock %}
+{% endblock content%}
