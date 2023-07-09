@@ -27,7 +27,6 @@
         <!-- Buscar variables en localStorage y setear antes que el contenido (evita flickering) -->
         <script>
             const theme = localStorage.getItem('mode') || 'light';
-
             if (theme === 'dark') {
                 document.body.classList.add('dark');
             } else {
@@ -36,7 +35,7 @@
 
             const position = localStorage.getItem('sidebarPos') || 'close';
             if (position === 'close') {
-                // La variable sidebar se declara previamente en sidebar.js
+                // La variable 'sidebar' se declara previamente en sidebar.js
                 sidebar.classList.add('close');
             } else {
                 sidebar.classList.remove('close');
@@ -48,14 +47,14 @@
 
 
         <section class="home">
-            <div class="title">Contenido</div>
+            <div class="title">VPM Admin</div>
             <div>
                 {% if messages %}
                 <ul>
                     {% for message in messages %}
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <li>
-                            <strong>Holy guacamole!</strong> {{ message }}
+                            <strong>Atención!</strong> {{ message }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </li>
                     </div>

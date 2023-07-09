@@ -365,3 +365,10 @@ ol, ul {
 .modal {
     --bs-modal-bg: var(--body-color);
 }
+
+.hstack {
+    justify-content: center;
+    font-size: 22px;
+    color: var(--text-color);
+    transition: var(--tran-03);
+}

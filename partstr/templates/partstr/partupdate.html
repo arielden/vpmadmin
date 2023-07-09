@@ -90,16 +90,21 @@
 
     </form>
     <br>
-    <div>
-        <a href="{{ request.META.HTTP_REFERER }}" type="button" class="btn btn-outline-secondary">Volver</a>
-    </div>
     <hr>
-    <div>
-        <a href="{% url 'partstr:home' %}">Home</a>
+    <!-- Acá van los íconos de pie de página -->
+    <div class="hstack gap-4">
+        <div class="p-2">
+            <a href="{{ request.META.HTTP_REFERER }}">
+                <i class='bx bx-arrow-back'></i>
+            </a>
+        </div>
+        <div class="p-2">
+            <a href="{% url 'partstr:home' %}">
+                <i class='bx bx-home-alt' ></i>
+            </a>
+        </div>
     </div>
 </div>
-
-<hr>
 
 {% include 'partstr/delete.html' %}
 
