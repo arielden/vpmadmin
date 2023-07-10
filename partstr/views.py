@@ -46,7 +46,7 @@ def logoutUser(request):
 def partlist(request):
 
     #Tomar 'q' y 'u' de la url
-    p = request.GET.get('p') if request.GET.get('p') != None else ''
+    p = request.GET.get('p') if request.GET.get('p') != None else '0'
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     u = request.GET.get('u') if request.GET.get('u') != None else ''
 
@@ -56,7 +56,7 @@ def partlist(request):
     # y aplicar también filtro por 'status' usando variable 'q'
     partnumbers = Part.objects.filter(
         # User método Q para multiples queries.
-        Q(partnumber__icontains=p) &
+        Q(partnumber__startswith=p) &
         Q(status__name__icontains=q)&
         Q(resp__username__icontains=u) 
     )

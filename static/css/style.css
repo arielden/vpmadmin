@@ -372,3 +372,7 @@ ol, ul {
     color: var(--text-color);
     transition: var(--tran-03);
 }
+
+label {
+    font-size: 16px;
+}

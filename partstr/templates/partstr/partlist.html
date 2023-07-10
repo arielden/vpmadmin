@@ -1,84 +1,118 @@
-{% extends 'base.html' %}
+    {% extends 'base.html' %}
 
-{% block title %}Estructura VPM - Lista{% endblock title%}
+    {% block title %}Estructura VPM - Lista{% endblock title%}
 
-{% block script_body %}
+    {% block script_body %}
 
-{% endblock script_body%}
+    {% endblock script_body%}
 
-{% block content %}
-<div>
-    <h3>Logueado como: {{ request.user.first_name }} {{ request.user.last_name }} </h3><br>
+    {% block content %}
+    <div>
+        <h3>Logueado como: {{ request.user.first_name }} {{ request.user.last_name }} </h3><br>
 
-    <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
+        <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
 
-    <!-- Este es el código para los tabs -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="simple-tab" data-bs-toggle="tab" data-bs-target="#simple-tab-pane" type="button" role="tab" aria-controls="simple-tab-pane" aria-selected="false">Simple</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="interm-tab" data-bs-toggle="tab" data-bs-target="#interm-tab-pane" type="button" role="tab" aria-controls="interm-tab-pane" aria-selected="false">Intermedia</button>
-        </li>
-    </ul>
+        <!-- Este es el código para los tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="simple-tab" data-bs-toggle="tab" data-bs-target="#simple-tab-pane" type="button" role="tab">Simple</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="interm-tab" data-bs-toggle="tab" data-bs-target="#interm-tab-pane" type="button" role="tab">Intermedia</button>
+            </li>
+        </ul>
 
-    <!-- Este es el código para el contenido de cada tab -->
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="simple-tab-pane" role="tabpanel" aria-labelledby="simple-tab" tabindex="0">
-            <!-- Acá van los controles para búsqueda simple -->
-            <br>
-            <p>Prueba: se muestran las partes (total) filtradas por madurez únicamente</p>
-            <a href="{% url 'partstr:partlist'%}">Todas</a>
-            {% for status in allstatus %}
-                <a href="{% url 'partstr:partlist'%}?q={{status.name}}">{{status.name}}</a>
-            {% endfor %}
+        <!-- Este es el código para el contenido de cada tab -->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" id="simple-tab-pane" role="tabpanel" tabindex="0">
+                <!-- Acá van los controles para búsqueda simple -->
+                <br>
+                <form id="search-form" method="GET" action="{% url 'partstr:partlist' %}">
+                    
+                    <div class="hstack gap-3">
+                        <label for="id_pn" class="form-label">PN:</label>
+                        <input id="id_pn" name="p" class="form-control custom-input" type="text" placeholder="comienza con...">
+        
+                        <label for="id_status" class="form-label">Madurez:</label>
+                        <select class="form-select" name="q" id="id_status">
+                        <option value="" selected>Seleccionar...</option>
+                        {% for status in allstatus %}
+                            <option> {{ status.name }} </option>
+                        {% endfor %}
+                        </select>
+        
+                        <button type="submit" class="btn btn-secondary">Buscar</button>
+
+                        <!-- <button type="button" class="btn btn-secondary" onclick="searchParts()">BuscarAJAX</button> -->
+
+                        <div class="vr"></div>
+                        <button type="button" class="btn btn-outline-danger">Reset</button>
+                        
+                    </div>
+                </form>
+                <br>
+            </div>
+
+            <div class="tab-pane fade" id="interm-tab-pane" role="tabpanel" tabindex="0">
+                <!-- Acá van los controles para búsqueda intermedia -->
+                <br>
+                <p>En desarollo: Controles de búsqueda intermedia</p>
+            </div>
         </div>
-        <div class="tab-pane fade" id="interm-tab-pane" role="tabpanel" aria-labelledby="interm-tab" tabindex="0">
-            <!-- Acá van los controles para búsqueda intermedia -->
-            <br>
-            <p>Prueba: se muestran las partes del usuario, filtradas por madurez</p>
-            <a href="{% url 'partstr:partlist'%}?u={{request.user.username}}">Todas</a>
-            {% for status in allstatus %}
-                <a href="{% url 'partstr:partlist'%}?u={{request.user.username}}&q={{status.name}}">{{status.name}}</a>
-            {% endfor %}
-        </div>
-    </div>
 
-    {% include 'partstr/partlistresult.html' %}
+        <div>
+            {% include 'partstr/partlistresult.html' %}
+        </div>
 
-    <br>
-    <hr>
-    <!-- Acá van los íconos de pie de página -->
-    <div class="hstack gap-4">
-        <div class="p-2">
-            <a href="{{ request.META.HTTP_REFERER }}">
-                <i class='bx bx-arrow-back'></i>
-            </a>
+        <br>
+        <hr>
+        <!-- Acá van los íconos de pie de página -->
+        <div class="hstack gap-4">
+            <div class="p-2">
+                <a href="{{ request.META.HTTP_REFERER }}">
+                    <i class='bx bx-arrow-back'></i>
+                </a>
+            </div>
+            <div class="p-2">
+                <a href="{% url 'partstr:home' %}">
+                    <i class='bx bx-home-alt' ></i>
+                </a>
+            </div>
+            <div class="p-2">
+                <a href="{% url 'partstr:partcreate' %}">
+                    <i class='bx bx-plus'></i>
+                </a>
+            </div>
         </div>
-        <div class="p-2">
-            <a href="{% url 'partstr:home' %}">
-                <i class='bx bx-home-alt' ></i>
-            </a>
-        </div>
-        <div class="p-2">
-            <a href="{% url 'partstr:partcreate' %}">
-                <i class='bx bx-plus'></i>
-            </a>
-        </div>
-    </div>
 
-<script>
-    $(document).ready(function(){
-        $('button[data-bs-toggle="tab"]').on('show.bs.tab', function(tabListener) {
-                localStorage.setItem('activeTab', $(tabListener.target).attr('data-bs-target'));
+    <script>
+        $(document).ready(function(){
+            $('button[data-bs-toggle="tab"]').on('show.bs.tab', function(tabListener) {
+                    localStorage.setItem('activeTab', $(tabListener.target).attr('data-bs-target'));
+                });
+                var activeTab = localStorage.getItem('activeTab');
+                if(activeTab){
+                    $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show'); 
+                }
             });
-            var activeTab = localStorage.getItem('activeTab');
-            if(activeTab){
-                $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show'); 
-            }
-        });
 
-</script>
+        function searchParts() {
+            var form = document.getElementById('search-form');
+            var formData = new FormData(form);
 
-{% endblock content%}
+            $.ajax({
+                type: 'GET',
+                url: form.action,
+                data: $(form).serialize(),
+                success: function(response) {
+                    $('#searchResult').html(response);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log('Error en la solicitud AJAX')
+                }
+            });
+        }
 
+    </script>
+
+    {% endblock content%}
