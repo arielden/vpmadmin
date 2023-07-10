@@ -10,8 +10,6 @@
     <div>
         <h3>Logueado como: {{ request.user.first_name }} {{ request.user.last_name }} </h3><br>
 
-        <small>{{ partnumbers_count }} número(s) de parte.</small><br><br>
-
         <!-- Este es el código para los tabs -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -96,22 +94,22 @@
                 }
             });
 
-        function searchParts() {
-            var form = document.getElementById('search-form');
-            var formData = new FormData(form);
+        // function searchParts() {
+        //     var form = document.getElementById('search-form');
+        //     var formData = new FormData(form);
 
-            $.ajax({
-                type: 'GET',
-                url: form.action,
-                data: $(form).serialize(),
-                success: function(response) {
-                    $('#searchResult').html(response);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log('Error en la solicitud AJAX')
-                }
-            });
-        }
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: form.action,
+        //         data: $(form).serialize(),
+        //         success: function(response) {
+        //             $('#searchResult').html(response);
+        //         },
+        //         error: function(xhr, textStatus, errorThrown) {
+        //             console.log('Error en la solicitud AJAX')
+        //         }
+        //     });
+        // }
 
     </script>
 

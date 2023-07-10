@@ -115,23 +115,21 @@ def partupdate(request, pk):
     
     #Si no es el propietario de la parte, muestra el form "readonly".
     if request.user != part.resp:
-        # return HttpResponse('Acceso no permitido')
         return render(request, 'partstr/partreadonly.html', context)
     
     if request.method == 'POST':
         form = PartCreateForm(request.POST, instance=part)
         if form.is_valid():
             form.save()
+            msg = messages.success(request, f'{part.partnumber} se actualizó correctamente!')
+            print(msg)
             return redirect('partstr:partlist')
-        
     
     return render(request, 'partstr/partupdate.html', context)
 
 @login_required(login_url='partstr:login')
 def partdelete(request, pk):
-    print(f"Entrando a partdelete con pk={pk}")
     part = Part.objects.get(id=pk)
-    print(f"Parte a eliminar: {part}")
     if request.method == 'POST':
         part.delete()
         print("Parte eliminada")

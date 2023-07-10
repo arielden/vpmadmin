@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <p>Esta es la plantilla partlistresult.html</p>
+        <small>Resultado: {{ partnumbers_count }} número(s) de parte.</small><br>
     </div>
     <div class="card-body">
         <table class="table table-striped table-hover">
@@ -8,8 +8,10 @@
                 <tr>
                     <th scope="col">PN</th>
                     <th scope="col">Designación</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Madurez</th>
-                    <th scope="col">Propiedades</th>
+                    <th scope="col">Prop.</th>
+                    <th scope="col">CATIA V5</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -17,8 +19,14 @@
                 <tr>
                     <th scope="row">{{part.partnumber}}</th>
                     <th>{{part.designation}}</th>
+                    <th>{{part.pntype}}</th>
                     <th>{{part.status}}</th>
-                    <th><a href="{% url 'partstr:partupdate' part.id %}">Acceder</a></th>
+                    <th>
+                        <a href="{% url 'partstr:partupdate' part.id %}">
+                            <i class='bx bx-cylinder'></i>
+                        </a>
+                    </th>
+                    <th>Cargar</th>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -26,6 +34,6 @@
     </div>
 </div>
 
-<div id="searchResult">
+<!-- <div id="searchResult">
     <p>Estos serían los resultados usando AJAX</p>
-</div>
+</div> -->
