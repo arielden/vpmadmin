@@ -307,6 +307,7 @@ body.dark .switch::before{
     width: calc(100% - 250px);
     background-color: var(--body-color);
     transition: var(--tran-05);
+
 }
 .home .title{
     font-size: 30px;
@@ -322,6 +323,14 @@ body.dark .switch::before{
     max-width: 1000px;
     color: var(--text-color);
     padding: 12px 60px;
+
+    /* background-image: url('../images/space-medium.jpg');
+    background-size: cover;
+    background-blend-mode:soft-light;
+    background-color: #eceef3fb;
+    padding-top: 100px;
+    padding-bottom: 100px; */
+
 }
 
 .sidebar.close ~ .home{

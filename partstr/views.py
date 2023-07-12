@@ -142,3 +142,12 @@ def structure(request):
 
     context = {'rootnode':rootnode}
     return render(request, 'partstr/structure.html', context)
+
+@login_required(login_url='partstr:login')
+def catiaload(request, pk):
+    part = Part.objects.get(id=pk)
+
+    partType = part.pntype
+
+    context = {'part':part, 'partType':partType}
+    return render(request, 'partstr/catiaload.html', context)

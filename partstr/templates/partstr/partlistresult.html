@@ -26,7 +26,11 @@
                             <i class='bx bx-cylinder'></i>
                         </a>
                     </th>
-                    <th>Cargar</th>
+                    <th>
+                        <a href="{% url 'partstr:catiaload' part.id %}">
+                            <i class='bx bx-package' ></i>
+                        </a>
+                    </th>
                 </tr>
                 {% endfor %}
             </tbody>
