@@ -319,8 +319,8 @@ body.dark .switch::before{
 .home .inner-cont{
     font-size: 16px;
     font-weight: 300;
-    min-width: 840px;
-    max-width: 1000px;
+    min-width: 870px;
+    max-width: 1100px;
     color: var(--text-color);
     padding: 12px 60px;
 
@@ -384,4 +384,16 @@ ol, ul {
 
 label {
     font-size: 16px;
+}
+
+.list-group-item {
+    background-color:#77848712;
+}
+
+.card-title {
+    color: var(--text-color);
+}
+
+.card-header {
+    color: var(--text-color);
 }

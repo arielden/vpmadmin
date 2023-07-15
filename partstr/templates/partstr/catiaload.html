@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        {{part}}-{{part.designation}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Abrir en CATIA V5 como:</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="newprod_id">
+                <label class="form-check-label" for="newprod_id">
+                  Nuevo producto
+                </label>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="asreference_id" checked>
+                <label class="form-check-label" for="asreference_id">
+                  Referencia
+                </label>
+              </div>
+        </li>
+      </ul>
+      <br>
+      <a href="#" class="btn btn-primary">Cargar</a>
+    </div>
+  </div>
+
+
+<br>
+<hr>
+<!-- Acá van los íconos de pie de página -->
+<div class="hstack gap-4">
+    <div class="p-2">
+        <a href="{{ request.META.HTTP_REFERER }}">
+            <i class='bx bx-arrow-back'></i>
+        </a>
+    </div>
+    <div class="p-2">
+        <a href="{% url 'partstr:home' %}">
+            <i class='bx bx-home-alt' ></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+

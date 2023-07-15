@@ -26,11 +26,16 @@
                             <i class='bx bx-cylinder'></i>
                         </a>
                     </th>
-                    <th>
-                        <a href="{% url 'partstr:catiaload' part.id %}">
-                            <i class='bx bx-package' ></i>
-                        </a>
-                    </th>
+                    <!-- Si part es del tipo 'Parte', establecer la opción de carga -->
+                    {% if part.pntype_id == 1 %}
+                        <th>
+                            <a href="{% url 'partstr:catiaload' part.id %}">
+                                <i class='bx bx-package' ></i>
+                            </a>
+                        </th>
+                    {% else %}
+                        <th></th>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
