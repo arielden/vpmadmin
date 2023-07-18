@@ -84,14 +84,19 @@
         </div>
 
     <script>
+        //Carga en localStorage el valor de la tab seleccionada.
         $(document).ready(function(){
             $('button[data-bs-toggle="tab"]').on('show.bs.tab', function(tabListener) {
                     localStorage.setItem('activeTab', $(tabListener.target).attr('data-bs-target'));
                 });
+
                 var activeTab = localStorage.getItem('activeTab');
-                if(activeTab){
-                    $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show'); 
+
+                //Compruebo que activeTab tenga algún valor
+                if(activeTab === null){
+                    activeTab = "#simple-tab-pane"
                 }
+                $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show');
             });
 
         // function searchParts() {

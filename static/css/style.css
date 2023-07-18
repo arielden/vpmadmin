@@ -360,7 +360,7 @@ ol, ul {
 
 .table {
     --bs-table-color: var(--text-color);  
-    --bs-table-hover-color: #5427de;
+    --bs-table-hover-color: #5b4995;
 }
 
 .table.dark {

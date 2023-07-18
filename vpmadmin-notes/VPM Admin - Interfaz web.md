@@ -1,1 +1,0 @@
-Creadas las principales vistas.

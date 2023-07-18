@@ -1,9 +1,0 @@
-{
-	"nodes":[
-		{"id":"ddcbc7822833c3fc","x":-220,"y":-280,"width":280,"height":140,"color":"2","type":"text","text":"**VPM admin**\nProjecto para el manejo de archivos CAD a través del navegador web."},
-		{"id":"ebf76159343e3460","x":-220,"y":-80,"width":250,"height":60,"color":"3","type":"text","text":"Interface (portal web)"}
-	],
-	"edges":[
-		{"id":"4e388ec323fc87b9","fromNode":"ddcbc7822833c3fc","fromSide":"bottom","toNode":"ebf76159343e3460","toSide":"top"}
-	]
-}

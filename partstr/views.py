@@ -147,7 +147,10 @@ def structure(request):
 def catiaload(request, pk):
     part = Part.objects.get(id=pk)
 
-    partType = part.pntype
-
-    context = {'part':part, 'partType':partType}
+    context = {'part':part}
     return render(request, 'partstr/catiaload.html', context)
+
+@login_required(login_url='partstr:login')
+def test(request):
+    requested = request.GET.get('load_option')
+    return print(requested)
