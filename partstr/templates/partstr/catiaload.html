@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<form method="GET" action="{% url 'partstr:partlist' %}">
-  
+<form method="POST" action="{% url 'partstr:partlist' %}?p=&u={{ request.user.username }}">
+  {% csrf_token %}
   <div class="card">
       <div class="card-header">
           {{part}}-{{part.designation}}
@@ -13,19 +13,15 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="newprod_id">
-                  <label class="form-check-label" for="newprod_id">
-                    Nuevo producto
-                  </label>
+                  <input class="form-check-input" type="radio" name="radiobutton" value="newprod" id="newprod_id">
+                  <label class="form-check-label" for="newprod_id">Nuevo producto</label>
               </div>
           </li>
           <li class="list-group-item">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="asreference_id" checked>
-                  <label class="form-check-label" for="asreference_id">
-                    Referencia
-                  </label>
-                </div>
+                  <input class="form-check-input" type="radio" name="radiobutton" value="asreference" id="asreference_id" checked>
+                  <label class="form-check-label" for="asreference_id">Referencia</label>
+              </div>
           </li>
         </ul>
         <br>

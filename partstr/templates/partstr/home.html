@@ -20,6 +20,10 @@
                 <a href="{% url 'partstr:partlist' %}">Búsqueda</a>
                 <!-- 'request.user.id' obtiene el id del usuario logueado y lo pasa como argumento -->
             </div>
+            <br>
+            <div>
+                <a href="{% url 'partstr:partlist' %}?p=&u={{request.user}}">Mis Partes</a>
+            </div>
         {% else %}
             <div>
                 <a href="{% url 'partstr:login' %}">Login</a>

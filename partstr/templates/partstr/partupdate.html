@@ -94,7 +94,7 @@
     <!-- Acá van los íconos de pie de página -->
     <div class="hstack gap-4">
         <div class="p-2">
-            <a href="{{ request.META.HTTP_REFERER }}">
+            <a href="{% url 'partstr:partlist' %}?p=&u={{request.user}}">
                 <i class='bx bx-arrow-back'></i>
             </a>
         </div>

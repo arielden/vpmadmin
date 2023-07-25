@@ -45,6 +45,13 @@ def logoutUser(request):
 @login_required(login_url='partstr:login') #el decorator restringe el acceso si no encuentra usuario autenticado
 def partlist(request):
 
+    if request.method == 'POST':
+        print("cargando en CATIA V5...")
+        load_mode = request.POST.get("radiobutton")
+        print(load_mode)
+        messages.success(request, f'seleccionado {load_mode}')
+
+
     #Tomar 'q' y 'u' de la url
     p = request.GET.get('p') if request.GET.get('p') != None else '0'
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -117,13 +124,14 @@ def partupdate(request, pk):
     if request.user != part.resp:
         return render(request, 'partstr/partreadonly.html', context)
     
+    #Si se actualiza la parte y el form es válido
     if request.method == 'POST':
         form = PartCreateForm(request.POST, instance=part)
+        print("actualizando...")
         if form.is_valid():
             form.save()
-            msg = messages.success(request, f'{part.partnumber} se actualizó correctamente!')
-            print(msg)
-            return redirect('partstr:partlist')
+            messages.success(request, f'{part.partnumber} se actualizó correctamente!')
+            #return redirect('partstr:partlist')
     
     return render(request, 'partstr/partupdate.html', context)
 
