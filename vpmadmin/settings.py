@@ -92,16 +92,16 @@ DATABASES = {
         'NAME': 'vpmadmin',
         'USER': 'root',
         'PASSWORD': 'root',
-        #----Linux conf-------
-        'HOST': '0.0.0.0',
-        'PORT': '33060',
-        #---------------------
-    },
-    'win-mysql-db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vpmadmin',
-        'USER': 'root',
-        'PASSWORD': 'root',
+    #     #----Linux conf-------
+    #     'HOST': '0.0.0.0',
+    #     'PORT': '33060',
+    #     #---------------------
+    # },
+    # 'win-mysql-db': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'vpmadmin',
+    #     'USER': 'root',
+    #     'PASSWORD': 'root',
         #----Windows conf-------
         'HOST': 'localhost',
         'PORT': '3306',
