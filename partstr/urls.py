@@ -15,4 +15,5 @@ urlpatterns = [
     path('partdelete/<int:pk>/', views.partdelete, name='partdelete'),
     path('structure/', views.structure, name='structure'),
     path('catiaload/<int:pk>', views.catiaload, name='catiaload'),
+    path('partloader/<int:pk>', views.partloader, name='partloader'),
 ]

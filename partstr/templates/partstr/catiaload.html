@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST" action="{% url 'partstr:partlist' %}?p=&u={{ request.user.username }}">
+<form method="POST" action="{% url 'partstr:partloader' part.id %}">
   {% csrf_token %}
   <div class="card">
       <div class="card-header">

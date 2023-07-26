@@ -54,7 +54,8 @@
                     {% for message in messages %}
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <li>
-                            <i class='bx bx-message-square-error' style="font-size: 25px;vertical-align: middle;"></i>{{ message }}
+                            <i class='bx bx-message-square-error' style="font-size: 25px;vertical-align: middle;"></i>
+                            &nbsp {{ message }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </li>
                     </div>

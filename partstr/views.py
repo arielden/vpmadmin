@@ -7,6 +7,7 @@ from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+from scripts.a00_basics import *
 
 def loginPage(request):
 
@@ -44,13 +45,6 @@ def logoutUser(request):
 
 @login_required(login_url='partstr:login') #el decorator restringe el acceso si no encuentra usuario autenticado
 def partlist(request):
-
-    if request.method == 'POST':
-        print("cargando en CATIA V5...")
-        load_mode = request.POST.get("radiobutton")
-        print(load_mode)
-        messages.success(request, f'seleccionado {load_mode}')
-
 
     #Tomar 'q' y 'u' de la url
     p = request.GET.get('p') if request.GET.get('p') != None else '0'
@@ -159,6 +153,23 @@ def catiaload(request, pk):
     return render(request, 'partstr/catiaload.html', context)
 
 @login_required(login_url='partstr:login')
-def test(request):
-    requested = request.GET.get('load_option')
-    return print(requested)
+def partloader(request, pk):
+
+    part_to_load = Part.objects.get(id=pk)
+
+    if request.method == 'POST':
+        load_mode = request.POST.get("radiobutton")
+        allfields = request.POST
+        print(f"cargando en CATIA V5...{load_mode}")
+        print(allfields)
+        if load_mode == 'asreference':
+            messages.success(request, 'Cargando como referencia...')
+            asreference(part_to_load)
+
+        elif load_mode == 'newprod':
+            messages.success(request, 'Cargando en un nuevo producto...')
+            newprod(part_to_load)
+    
+    context = {'part':part_to_load }
+
+    return render(request, 'partstr/partloader.html', context)
