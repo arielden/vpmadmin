@@ -78,8 +78,10 @@ class Part(models.Model):
                                blank=True,
                                related_name='children')
     level = models.ForeignKey(Level,
-                              on_delete = models.SET_DEFAULT,
-                              default=Level.objects.get(id=1))
+                              on_delete = models.DO_NOTHING,
+                              # Si hay problemas al migrar, comentar la siguiente línea
+                              default=Level.objects.get(id=1)
+                              )
     
     objects = models.Manager() # Default
     released = ReleasedManager() # Custom manager for released parts!

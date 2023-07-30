@@ -7,7 +7,7 @@ from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-from scripts.a00_basics import *
+from scripts.a00_catialauncher import *
 
 def loginPage(request):
 
@@ -155,7 +155,7 @@ def catiaload(request, pk):
 @login_required(login_url='partstr:login')
 def partloader(request, pk):
 
-    part_to_load = Part.objects.get(id=pk)
+    part = Part.objects.get(id=pk)
 
     if request.method == 'POST':
         load_mode = request.POST.get("radiobutton")
@@ -164,12 +164,12 @@ def partloader(request, pk):
         print(allfields)
         if load_mode == 'asreference':
             messages.success(request, 'Cargando como referencia...')
-            asreference(part_to_load)
+            asreference(part)
 
         elif load_mode == 'newprod':
             messages.success(request, 'Cargando en un nuevo producto...')
-            newprod(part_to_load)
+            newprod(part)
     
-    context = {'part':part_to_load }
+    context = {'part':part }
 
     return render(request, 'partstr/partloader.html', context)
