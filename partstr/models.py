@@ -5,10 +5,10 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 
-class ReleasedManager(models.Model):
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset()\
-                    .filter(status=Part.Status.RELEASED)
+# class ReleasedManager(models.Model):
+#     def get_queryset(self) -> QuerySet:
+#         return super().get_queryset()\
+#                     .filter(status=Part.Status.RELEASED)
     
 #---------------------------------------------------
 # These classes convert the charfield into uppercase.
@@ -80,11 +80,12 @@ class Part(models.Model):
     level = models.ForeignKey(Level,
                               on_delete = models.DO_NOTHING,
                               # Si hay problemas al migrar, comentar la siguiente línea
-                              default=Level.objects.get(id=1)
+                            #   default=Level.objects.get(id=1)
                               )
+    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True)
     
-    objects = models.Manager() # Default
-    released = ReleasedManager() # Custom manager for released parts!
+    # objects = models.Manager() # Default
+    # released = ReleasedManager() # Custom manager for released parts!
 
     class Meta:
         ordering = ['partnumber']

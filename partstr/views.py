@@ -7,7 +7,7 @@ from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-from scripts.a00_catialauncher import *
+from scripts.a02_partloader import *
 
 def loginPage(request):
 
@@ -163,12 +163,14 @@ def partloader(request, pk):
         print(f"cargando en CATIA V5...{load_mode}")
         print(allfields)
         if load_mode == 'asreference':
-            messages.success(request, 'Cargando como referencia...')
+            messages.success(request, 'Parte cargada! (in new window)')
             asreference(part)
-
-        elif load_mode == 'newprod':
-            messages.success(request, 'Cargando en un nuevo producto...')
-            newprod(part)
+        elif load_mode == 'asnewprod':
+            messages.success(request, 'Parte cargada en nuevo producto')
+            asnewprod(part)
+        elif load_mode == 'newpart':
+            messages.success(request, 'Asociar nueva parte!')
+            newpart(part)
     
     context = {'part':part }
 

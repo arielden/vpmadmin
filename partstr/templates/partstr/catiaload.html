@@ -13,22 +13,65 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="radiobutton" value="newprod" id="newprod_id">
-                  <label class="form-check-label" for="newprod_id">Nuevo producto</label>
+                {% if part.file_path == None %}
+                    <input class="form-check-input" type="radio" name="radiobutton" value="asnewprod" id="asnewprod_id" disabled>
+                {% else %}
+                    <input class="form-check-input" type="radio" name="radiobutton" value="asnewprod" id="asnewprod_id">
+                {% endif %}
+                    <label class="form-check-label" for="asnewprod_id">Nuevo producto</label>
               </div>
           </li>
           <li class="list-group-item">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="radiobutton" value="asreference" id="asreference_id" checked>
-                  <label class="form-check-label" for="asreference_id">Referencia</label>
+                {% if part.file_path == None %}
+                    <input class="form-check-input" type="radio" name="radiobutton" value="asreference" id="asreference_id" disabled>
+                {% else %}
+                    <input class="form-check-input" type="radio" name="radiobutton" value="asreference" id="asreference_id" checked>
+                {% endif %}
+                    <label class="form-check-label" for="asreference_id">Referencia</label>
               </div>
           </li>
         </ul>
         <br>
-        <button type="submit" class="btn btn-primary">Cargar</button>
+        {% if part.file_path == None %}
+            <button type="submit" class="btn btn-primary" disabled>Cargar</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        {% endif %}
       </div>
     </div>
-
+    <hr>
+    <!-- Opciones para asociar DOC-CAD -->
+    <div class="card">
+        <div class="card-header">
+            {{part}}-{{part.designation}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Asociar DOC-CAD:</h5>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiobutton" value="newpart" id="newpart_id" checked>
+                    <label class="form-check-label" for="newpart_id">Nuevo (CATPART)</label>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radiobutton" value="existfile" id="existfile_id">
+                        <label class="form-check-label" for="existfile_id">Archivo existente</label>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radiobutton" value="fromcatia" id="fromcatia_id" checked>
+                    <label class="form-check-label" for="fromcatia_id">Desde CATIA</label>
+                </div>
+            </li>
+            </ul>
+            <br>
+            <button type="submit" class="btn btn-secondary">Asociar</button>
+        </div>
+    </div>
 </form>
 
 
