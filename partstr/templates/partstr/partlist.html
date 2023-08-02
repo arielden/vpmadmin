@@ -41,8 +41,6 @@
         
                         <button type="submit" class="btn btn-secondary">Buscar</button>
 
-                        <!-- <button type="button" class="btn btn-secondary" onclick="searchParts()">BuscarAJAX</button> -->
-
                         <div class="vr"></div>
                         <button type="button" class="btn btn-outline-danger">Reset</button>
                         
@@ -67,8 +65,8 @@
         <!-- Acá van los íconos de pie de página -->
         <div class="hstack gap-4">
             <div class="p-2">
-                <a href="{{ request.META.HTTP_REFERER }}">
-                    <i class='bx bx-arrow-back'></i>
+                <a href="{% url 'partstr:partlist' %}?p=&u={{request.user.username}}">
+                    <i class='bx bx-user'></i>
                 </a>
             </div>
             <div class="p-2">
@@ -98,24 +96,6 @@
                 }
                 $('#myTab button[data-bs-target="' + activeTab + '"]').tab('show');
             });
-
-        // function searchParts() {
-        //     var form = document.getElementById('search-form');
-        //     var formData = new FormData(form);
-
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: form.action,
-        //         data: $(form).serialize(),
-        //         success: function(response) {
-        //             $('#searchResult').html(response);
-        //         },
-        //         error: function(xhr, textStatus, errorThrown) {
-        //             console.log('Error en la solicitud AJAX')
-        //         }
-        //     });
-        // }
-
     </script>
 
     {% endblock content%}

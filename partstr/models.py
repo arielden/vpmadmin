@@ -80,9 +80,9 @@ class Part(models.Model):
     level = models.ForeignKey(Level,
                               on_delete = models.DO_NOTHING,
                               # Si hay problemas al migrar, comentar la siguiente línea
-                            #   default=Level.objects.get(id=1)
+                              default=Level.objects.get(id=1)
                               )
-    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True)
+    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True, default="")
     
     # objects = models.Manager() # Default
     # released = ReleasedManager() # Custom manager for released parts!
