@@ -64,10 +64,10 @@ class Part(models.Model):
     updated = models.DateTimeField(auto_now= True)
 
     # Mass and cg properties
-    mass = models.DecimalField(max_digits=8, decimal_places=1, default=0) # Mass in (g)
-    xcg = models.DecimalField(max_digits=8, decimal_places=1, default=0) # Xcg in (mm)
-    ycg = models.DecimalField(max_digits=8, decimal_places=1, default=0) # Ycg in (mm)
-    zcg = models.DecimalField(max_digits=8, decimal_places=1, default=0) # Zcg in (mm)
+    mass = models.DecimalField(max_digits=8, decimal_places=1, default=0, null=True, blank=True) # Mass in (g)
+    xcg = models.DecimalField(max_digits=8, decimal_places=1, default=0, null=True, blank=True) # Xcg in (mm)
+    ycg = models.DecimalField(max_digits=8, decimal_places=1, default=0, null=True, blank=True) # Ycg in (mm)
+    zcg = models.DecimalField(max_digits=8, decimal_places=1, default=0, null=True, blank=True) # Zcg in (mm)
     
     # Hierarchy
     # al definir related_name='children', podemos acceder a todos los hijos de una instancia a través del
@@ -82,7 +82,7 @@ class Part(models.Model):
                               # Si hay problemas al migrar, comentar la siguiente línea
                               default=Level.objects.get(id=1)
                               )
-    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True, default="")
+    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True, default=None)
     
     # objects = models.Manager() # Default
     # released = ReleasedManager() # Custom manager for released parts!

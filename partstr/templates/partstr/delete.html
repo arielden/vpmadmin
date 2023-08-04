@@ -9,14 +9,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Está a punto de eliminar la parte:</p>
+                    <p>Está a punto de eliminar la parte o sus documentos asociados:</p>
                     <p>{{part.partnumber}}</p>
                     <div>
                         <small>Esta operación no se puede deshacer</small>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete" value="part_delete">Eliminar Parte</button>
+                    {% if not part.file_path == "" %}
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" name="delete" value="doccad_delete">Eliminar DOC -CAD</button>
+                    {% endif %}
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
                 </div>
             </div>
