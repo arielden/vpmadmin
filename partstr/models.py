@@ -79,10 +79,9 @@ class Part(models.Model):
                                related_name='children')
     level = models.ForeignKey(Level,
                               on_delete = models.DO_NOTHING,
-                              # Si hay problemas al migrar, comentar la siguiente línea
-                              default=Level.objects.get(id=1)
+                              default=1
                               )
-    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True, default=None)
+    file_path = models.FileField(upload_to='catia_data/', null=True, blank=True, default=None, max_length=500)
     
     # objects = models.Manager() # Default
     # released = ReleasedManager() # Custom manager for released parts!

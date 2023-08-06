@@ -135,13 +135,12 @@ def partdelete(request, pk):
     if request.method == 'POST':
         deleteWhat = request.POST.get("delete")
         if deleteWhat == 'part_delete':
+            if part.file_path:
+                doccadDelete(part)
             part.delete()
             print("Parte eliminada")
         elif deleteWhat == 'doccad_delete':
-            os.remove(str(part.file_path))
-            part.file_path.delete()
-            part.save()
-            print("doccad eliminado")
+            doccadDelete(part)
         return redirect('partstr:partlist')
     
     context = {'obj':part, 'type':deleteWhat}
@@ -177,8 +176,11 @@ def partloader(request, pk):
             messages.success(request, 'Parte cargada en nuevo producto')
             asnewprod(part)
         elif load_mode == 'newpart':
-            messages.success(request, 'Asociar nueva parte!')
-            newpart(part)
+            try:
+                newpart(part)
+                messages.success(request, 'DOCCAD asociado con éxito!')
+            except:
+                messages.error(request, 'Error!')
     
     context = {'part':part }
 

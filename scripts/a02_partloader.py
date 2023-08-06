@@ -25,14 +25,15 @@ def set_properties(template: object, part:object) -> None:
     desig_catiadoc = part_parameters.Item("Definition")
     desig_catiadoc.Value = part.designation
 
-    mass_catiadoc = part_parameters.Item("param_Mass")
-    mass_catiadoc.Value = 23
+    id_catiadoc = part_parameters.Item("partID")
+    id_catiadoc.Value = part.id
+
 #---------------------------------------------------------------
 
-#--------Asociate DOC-CAD functions-----------------------------
+#-----------DOC-CAD functions-----------------------------------
 def newpart(part:object) -> None:
     """
-    Receives a Part Object as an argument.\n
+    Receive a Part Object as an argument.\n
     Create and save a CATPart file based on a template.
     """
     launch_catia()
@@ -61,12 +62,24 @@ def newpart(part:object) -> None:
     # Asign file_path to Part obj
     part.file_path = file_path
     part.save()
+
+def doccadDelete(part:object) -> None:
+    try:
+        os.remove(str(part.file_path))
+        part.file_path.delete()
+        part.save()
+        msg = "DOCCAD deleted!"
+    except OSError as err:
+        msg = err
+
+    return print(msg)
+    
 #---------------------------------------------------------------
 
 #--------Load CATPart functions---------------------------------
 def asreference(part:object) -> None:
     """
-    Receives a Part Object as an argument.\n
+    Receive a Part Object as an argument.\n
     Loads the CATPart file asociated to the Part obj.
     """
     launch_catia()
@@ -75,7 +88,7 @@ def asreference(part:object) -> None:
 
     # Check if exists
     if os.path.exists(file_path):
-        # Loads CATIA file.
+        # Load CATIA file.
         catapp = client.Dispatch('CATIA.Application')
         documents = catapp.Documents
         partDocument = documents.Open(file_path)
@@ -93,35 +106,3 @@ def asnewprod(part:object) -> None:
 
     print("Lógica para carga de productos.")
 #---------------------------------------------------------------
-
-#--------Asociate DOC-CAD functions-----------------------------
-def newpart_bkp(part:object) -> None:
-    """
-    Receives a Part Object as an argument.\n
-    Create and save a CATPart file based on a template.
-    """
-    launch_catia()
-
-    # Template variables
-    template_file = "genericPart.CATPart"
-    template_path = os.path.join(settings.MEDIA_ROOT, 'templates', template_file)
-
-    # Load the template file.
-    catapp = client.Dispatch('CATIA.Application')
-    documents = catapp.Documents
-    template = documents.Open(template_path)
-
-    # Modify the template based on Part objects properties.
-    # ...Here the different parameters to be modified
-
-    # Define location and name for the new part.
-    file_name = f"{generate_uuid()}.CATPart"
-    file_path = os.path.join(settings.MEDIA_ROOT, 'catia_data', file_name)
-
-    # Save the template as new file.
-    template.SaveAs(file_path)
-    template.Close()
-
-    # Asign file_path to Part obj
-    part.file_path = file_path
-    part.save()
