@@ -7,7 +7,7 @@ from .forms import PartCreateForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-from scripts.a00_basics import *
+from scripts.a02_partloader import *
 
 def loginPage(request):
 
@@ -102,13 +102,13 @@ def partcreate(request):
 
 @login_required(login_url='partstr:login')
 def partupdate(request, pk):
-    part = Part.objects.get(id=pk) #Asignamos una parte (mediante su id) a la variable "part"
-    form = PartCreateForm(instance=part) # Al usar instance, llenamos el form con el objeto part
+    part = Part.objects.get(id=pk) #Load the object Part to a variable
+    form = PartCreateForm(instance=part) # Load the form with the object data (using instance=)
 
     levels = Level.objects.all()
     status = Status.objects.all()
     pntypes = PnType.objects.all()
-    assemblies = Part.objects.filter(pntype=2) #Devuelve conjuntos solamente. (filtra por id de conjunto)
+    assemblies = Part.objects.filter(pntype=2) #Receive only Assys
 
     context = {'form': form, 'part':part,
                'levels':levels, 'status':status,
@@ -133,10 +133,19 @@ def partupdate(request, pk):
 def partdelete(request, pk):
     part = Part.objects.get(id=pk)
     if request.method == 'POST':
-        part.delete()
-        print("Parte eliminada")
+        deleteWhat = request.POST.get("delete")
+        if deleteWhat == 'part_delete':
+            if part.file_path:
+                doccadDelete(part)
+            part.delete()
+            print("Parte eliminada")
+        elif deleteWhat == 'doccad_delete':
+            doccadDelete(part)
         return redirect('partstr:partlist')
-    return render(request, 'partstr/delete.html', {'obj':part})
+    
+    context = {'obj':part, 'type':deleteWhat}
+    return render(request, 'partstr/delete.html', context)
+
 
 def structure(request):
     assyparts = Part.objects.filter(pntype=2)
@@ -155,21 +164,24 @@ def catiaload(request, pk):
 @login_required(login_url='partstr:login')
 def partloader(request, pk):
 
-    part_to_load = Part.objects.get(id=pk)
+    part = Part.objects.get(id=pk)
 
     if request.method == 'POST':
         load_mode = request.POST.get("radiobutton")
-        allfields = request.POST
         print(f"cargando en CATIA V5...{load_mode}")
-        print(allfields)
         if load_mode == 'asreference':
-            messages.success(request, 'Cargando como referencia...')
-            asreference(part_to_load)
-
-        elif load_mode == 'newprod':
-            messages.success(request, 'Cargando en un nuevo producto...')
-            newprod(part_to_load)
+            messages.success(request, 'Parte cargada! (in new window)')
+            asreference(part)
+        elif load_mode == 'asnewprod':
+            messages.success(request, 'Parte cargada en nuevo producto')
+            asnewprod(part)
+        elif load_mode == 'newpart':
+            try:
+                newpart(part)
+                messages.success(request, 'DOCCAD asociado con éxito!')
+            except:
+                messages.error(request, 'Error!')
     
-    context = {'part':part_to_load }
+    context = {'part':part }
 
     return render(request, 'partstr/partloader.html', context)

@@ -388,6 +388,7 @@ label {
 
 .list-group-item {
     background-color:#77848712;
+    border: var(--bs-list-group-border-width) solid #9aa2b32e;
 }
 
 .card-title {
